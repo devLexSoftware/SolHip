@@ -1,3 +1,7 @@
+<?php include("../config/bloque.php"); ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,87 +13,68 @@
   <meta name="author" content="">
   <title>SB Admin - Start Bootstrap Template</title>
   <!-- Bootstrap core CSS-->
-  <link href="../../recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../recursos/bootstrap/css/bootstrap.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="../../recursos/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="../../recursos/css/sb-admin.css" rel="stylesheet">
+
+  <!-- Otros -->
+  <link href="../../recursos/css/complementos.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.html">Solidez Hipotecaria</a>
+    <a class="navbar-brand" href="index.php">Solidez <b>Hipotecaria</b></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
           <a class="nav-link" href="index.html">
-            <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Usuario</span>
+            <img class="fa fa-2x fa-fw" src="data:image/png;base64,<?php echo base64_encode($_SESSION['foto']); ?>" />
+            <span class="nav-link-text"><?php echo ($_SESSION['nombre']); ?>  </span>
           </a>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Informacion">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-text">Cliente</span>
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Captura Información</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseComponents">
             <li>
               <a href="navbar.html">Listado</a>
             </li>
             <li>
-              <a href="cards.html">Ingresar</a>
+              <a onclick="abrir('Clientes')">Ingresar</a>
             </li>
           </ul>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Generales">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">Example Pages</span>
+            <span class="nav-link-text">Generales</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.html">Login Page</a>
-            </li>
-            <li>
-              <a href="register.html">Registration Page</a>
-            </li>
-            <li>
-              <a href="forgot-password.html">Forgot Password Page</a>
-            </li>
-            <li>
-              <a href="blank.html">Blank Page</a>
+              <a href="login.html">Pagina 1</a>
             </li>
           </ul>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bitacora">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-sitemap"></i>
-            <span class="nav-link-text">Menu Levels</span>
+            <i class="fa fa-fw fa-book"></i>
+            <span class="nav-link-text">Bitácora</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMulti">
             <li>
-              <a href="#">Second Level Item</a>
-            </li>
-            <li>
-              <a href="#">Second Level Item</a>
-            </li>
-            <li>
-              <a href="#">Second Level Item</a>
-            </li>
-            <li>
               <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
               <ul class="sidenav-third-level collapse" id="collapseMulti2">
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
                 <li>
                   <a href="#">Third Level Item</a>
                 </li>
@@ -97,12 +82,35 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contactos">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseContacs" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-list"></i>
+            <span class="nav-link-text">Contactos</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseContacs">
+            <li>
+              <a href="login.html">Pagina 1</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Eventos">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEvents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-calendar"></i>
+            <span class="nav-link-text">Eventos</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseEvents">
+            <li>
+              <a href="login.html">Pagina 1</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Administrador">
           <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-link"></i>
-            <span class="nav-link-text">Link</span>
+            <i class="fa fa-fw fa-gear"></i>
+            <span class="nav-link-text">Administrador</span>
           </a>
         </li>
+
       </ul>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
@@ -203,28 +211,23 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+            <i class="fa fa-fw fa-sign-out"></i>Salir</a>
         </li>
       </ul>
     </div>
   </nav>
+
+
   <div class="content-wrapper">
-    <div class="container-fluid">
-      <!-- Breadcrumbs-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Navbar</li>
-      </ol>
-      <h1>Navbar</h1>
-      <hr>
-      <p>The SB Admin navbar can be either fixed or static, and it supports the navbar-light and navbar-dark Bootstrap 4 classes.</p>
-      <a class="btn btn-primary" href="#" id="toggleNavPosition">Toggle Fixed/Static Navbar</a>
-      <a class="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
-      <!-- Blank div to give the page height to preview the fixed vs. static navbar-->
-      <div style="height: 1000px;"></div>
-    </div>
+
+      <!-- Contenido de la página, esto varia dependiendo del modulo-->
+
+      <div id="divContenido">
+
+      </div>
+
+      <!-- Contenido de la página, esto varia dependiendo del modulo-->
+
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
     <footer class="sticky-footer">
@@ -243,15 +246,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Aviso</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">¿Desea cerrar sesión?</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="../config/salir.php">Salir</a>
           </div>
         </div>
       </div>
@@ -281,6 +284,10 @@
     });
 
     </script>
+
+    <!-- Js para llamar formularios -->
+    <script src="../../recursos/js/CliGeneral.js"></script>
+
   </div>
 </body>
 
