@@ -12,30 +12,35 @@
   <h1>Nuevo registro</h1>
   <hr>
 
-  <form role="form-horizontal">
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="sMargen">Nombre cliente</p>
-            <input class="form-control" type="text" name="cliNombre" value="" placeholder="Nombre">
-          </div>
-          <div class="col-md-6">
-            <p class="sMargen">Apellido cliente</p>
-            <input class="form-control" type="text" name="cliApellido" value="" placeholder="Apellido">
-          </div>
-        </div>
+  <form role="form-horizontal" method="post" id="formCliente" autocomplete="off" action="../clientes/actions/newCliente.php">
+
+    <div class="form-group row ">
+      <div class="form-group col-md-6">
+        <p class="sMargen">Nombre cliente</p>
+        <input class="form-control" type="text" name="cliNombre" value="" placeholder="Nombre">
+        <span id="error" class="invalid-feedback"></span>
+      </div>
+
+      <div class="form-group col-md-6">
+        <p class="sMargen">Apellido cliente</p>
+        <input class="form-control" type="text" name="cliApellido" value="" placeholder="Apellido">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
+
     <br>
-    <div class="form-group row">
+    <div class="form-group row ">
+
       <div class="form-group col-md-2">
         <p class="sMargen">NSS</p>
         <input class="form-control" type="text" name="cliNss" value="" placeholder="NSS">
+        <span id="error" class="invalid-feedback"></span>
       </div>
+
       <div class="form-group col-md-2">
         <p class="sMargen">RFC</p>
         <input class="form-control" type="text" name="cliRfc" value="" placeholder="RFC">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Fecha Nacimiento</p>
@@ -53,32 +58,34 @@
     <div class="form-group row">
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name="cliCalle" value="" placeholder="Calle">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name="cliColonia" value="" placeholder="Colonia">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliNumExt" value="" placeholder="# Interior">
+        <input class="form-control" type="text" name="cliNumExt" value="" placeholder="# Exterior">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliNumInt" value="" placeholder="# Exterior">
+        <input class="form-control" type="text" name="cliNumInt" value="" placeholder="# Interior">
       </div>
       <div class="form-group col-md-2">
         <input class="form-control" type="text" name="cliCP" value="" placeholder="C.P.">
       </div>
       <div class="form-group col-md-2">
         <input class="form-control" type="text" name="cliAntiguedad" value="" placeholder="Antigüedad">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
-        <datalist id="listVivienda">
-          <option value="Familiar">
-          <option value="Propia">
-          <option value="Rentada">
-          </datalist>
-        <input class="form-control" list="listVivienda" type="text" name="cliTipo" value="" placeholder="Tipo vivienda">
+        <select class="form-control" name="cliTipo" value="" placeholder="Tipo vivienda">
+          <option value="Familiar">Familiar</option>
+          <option value="Propia">Propia</option>
+          <option value="Rentada">Rentada</option>
+        </select>
       </div>
     </div>
-
     <br>
 
     <h3>Datos de localización</h3>
@@ -87,6 +94,7 @@
       <div class="form-group col-md-2">
         <p class="sMargen">Teléfono Fijo</p>
         <input class="form-control" type="text" name="cliTelCasa" value="" placeholder="Fijo">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Teléfono Móvil</p>
@@ -94,7 +102,8 @@
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Correo</p>
-        <input class="form-control" type="email" name="cliTelMovil" value="" placeholder="email">
+        <input class="form-control" type="email" name="cliEmail" value="" placeholder="Email">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
     <br>
@@ -103,7 +112,17 @@
     <div class="form-group row">
       <div class="form-group col-md-2">
         <p class="sMargen">Dependientes Económicos</p>
-        <input class="form-control" type="text" name="cliNDependientes" value="" placeholder="Dependientes" onchange="CDependientes(this.value)">
+        <select class="form-control" name="cliNDependientes" value="0" placeholder="Dependientes" onchange="CDependientes(this.value)">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
       </div>
     </div>
 
@@ -126,7 +145,7 @@
         <input class="form-control" type="text" name="cliEmpresaCalle" value="" placeholder="Calle">
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name="cliEmpresaCalle" value="" placeholder="Colonia">
+        <input class="form-control" type="text" name="cliEmpresaColonia" value="" placeholder="Colonia">
       </div>
       <div class="form-group col-md-1">
         <input class="form-control" type="text" name="cliEmpresaNExt" value="" placeholder="# Exterior">
@@ -138,7 +157,7 @@
         <input class="form-control" type="text" name="cliEmpresaCP" value="" placeholder="CP">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name="cliEmpresaAnt" value="" placeholder="antiguedad">
+        <input class="form-control" type="text" name="cliEmpresaAnt" value="" placeholder="Antigüedad">
       </div>
       <div class="form-group col-md-2">
         <input class="form-control" type="text" name="cliEmpresaTel" value="" placeholder="Teléfono">
@@ -217,7 +236,7 @@
     <div class="form-group row">
       <div class="form-group col-md-10"></div>
       <div class="form-group col-md-2">
-        <button class="btn btn-primary" type="button" name="btnGuardar" style="align:right;">Guardar</button>
+        <button class="btn btn-primary" type="submit" name="btnGuardar" style="align:right;">Guardar</button>
         <button class="btn btn-success" type="button" name="btnSiguiente">Avanzar</button>
       </div>
     </div>
@@ -230,3 +249,6 @@
   <a class="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
    Blank div to give the page height to preview the fixed vs. static navbar-->
 </div>
+<!--
+<script src="../../recursos/js/CliValidate.js"></script>
+-->

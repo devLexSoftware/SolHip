@@ -19,9 +19,9 @@ function CDependientes(cant) {
         '<p class="sMargen">Parentezco</p> ' +
         '<input class="form-control" type="text" name='+ par + count +' value="" placeholder="Parentezco"> ' +
       '</div> ' +
-      '<div class="form-group col-md-3"> ' +
+      '<div class="form-group col-md-1"> ' +
         '<p class="sMargen">Edad</p> ' +
-        '<input class="form-control" type="email" name='+ eda + count + ' value="" placeholder="Edad"> ' +
+        '<input class="form-control" type="text" name='+ eda + count + ' value="" placeholder="Edad"> ' +
         '</div>' +
     '</div>';
     count++;

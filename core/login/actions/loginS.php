@@ -1,7 +1,7 @@
 <?php
   include("../../config/conexion.php");
-  $usuario = $_POST[user];
-  $password = $_POST[pass];
+  $usuario = $_POST[user1];
+  $password = $_POST[pass1];
   $_SESSION['valida'] = 'false';
   $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   if (mysqli_connect_errno()) {

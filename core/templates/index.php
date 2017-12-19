@@ -21,6 +21,7 @@
 
   <!-- Otros -->
   <link href="../../recursos/css/complementos.css" rel="stylesheet">
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -261,6 +262,7 @@
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="../../recursos/vendor/jquery/jquery.min.js"></script>
+    <script src="../../recursos/validate/dist/jquery.validate.min.js"></script>
     <script src="../../recursos/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="../../recursos/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -286,8 +288,9 @@
     </script>
 
     <!-- Js para llamar formularios -->
-    <script src="../../recursos/js/CliGeneral.js"></script>
 
+    <script src="../../recursos/js/CliGeneral.js"></script>
+    
   </div>
 </body>
 
