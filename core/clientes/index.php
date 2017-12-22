@@ -1,3 +1,4 @@
+<?php include("../config/bloque.php"); ?>
 <div class="container-fluid">
 
   <!-- Breadcrumbs-->
@@ -12,7 +13,7 @@
   <h1>Nuevo registro</h1>
   <hr>
 
-  <form role="form-horizontal" method="post" id="formCliente" autocomplete="off" action="../clientes/actions/newCliente.php">
+  <form role="form-horizontal" method="post" id="formCliente" autocomplete="off" name="Cliente">
 
     <div class="form-group row ">
       <div class="form-group col-md-6">
@@ -49,6 +50,7 @@
       <div class="form-group col-md-6">
         <p class="sMargen">Nivel Académico</p>
         <input class="form-control" type="text" name="cliNivAcademico" value="" placeholder="Nivel Académico">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
 
@@ -99,6 +101,7 @@
       <div class="form-group col-md-2">
         <p class="sMargen">Teléfono Móvil</p>
         <input class="form-control" type="text" name="cliTelMovil" value="" placeholder="Móvil">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Correo</p>
@@ -136,34 +139,44 @@
       <div class="form-group col-md-8">
         <p class="sMargen">Nombre de la Empresa</p>
         <input class="form-control" type="text" name="cliEmpresaNombre" value="" placeholder="Nombre de la empresa">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-4">
         <p class="sMargen">Puesto en la Empresa</p>
         <input class="form-control" type="text" name="cliEmpresaPuesto" value="" placeholder="Puesto que desempeña">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name="cliEmpresaCalle" value="" placeholder="Calle">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name="cliEmpresaColonia" value="" placeholder="Colonia">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
         <input class="form-control" type="text" name="cliEmpresaNExt" value="" placeholder="# Exterior">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
         <input class="form-control" type="text" name="cliEmpresaNInt" value="" placeholder="# Interior">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name="cliEmpresaCP" value="" placeholder="CP">
+        <input class="form-control" type="number" name="cliEmpresaCP" value="" placeholder="CP">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name="cliEmpresaAnt" value="" placeholder="Antigüedad">
+        <input class="form-control" type="number" name="cliEmpresaAnt" value="" placeholder="Tiempo en la empresa">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
         <input class="form-control" type="text" name="cliEmpresaTel" value="" placeholder="Teléfono">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
         <input class="form-control" type="text" name="cliEmpresaTelExt" value="" placeholder="Extensión">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
 
@@ -174,70 +187,70 @@
     <h5>Familiar 1</h5>
     <div class="form-group row">
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef1Nombre' value="" placeholder="Nombre">
+        <input class="form-control" type="text" name='CliRefNombre0' value="" placeholder="Nombre">
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef1Apellido' value="" placeholder="Apellido">
+        <input class="form-control" type="text" name='CliRefApellido0' value="" placeholder="Apellido">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef1Tel' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="text" name='CliRefTel0' value="" placeholder="Teléfono Fijo">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef1Mov' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="text" name='CliRefMov0' value="" placeholder="Teléfono Móvil">
       </div>
     </div>
     <h5>Familiar 2</h5>
     <div class="form-group row">
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef2Nombre' value="" placeholder="Nombre">
+        <input class="form-control" type="text" name='CliRefNombre1' value="" placeholder="Nombre">
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef2Apellido' value="" placeholder="Apellido">
+        <input class="form-control" type="text" name='CliRefApellido1' value="" placeholder="Apellido">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef2Tel' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="text" name='CliRefTel1' value="" placeholder="Teléfono Fijo">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef2Mov' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="text" name='CliRefMov1' value="" placeholder="Teléfono Móvil">
       </div>
     </div>
     <hr>
     <h5>Amigo 1</h5>
     <div class="form-group row">
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef3Nombre' value="" placeholder="Nombre">
+        <input class="form-control" type="text" name='CliRefNombre2' value="" placeholder="Nombre">
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef3Apellido' value="" placeholder="Apellido">
+        <input class="form-control" type="text" name='CliRefApellido2' value="" placeholder="Apellido">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef3Tel' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="text" name='CliRefTel2' value="" placeholder="Teléfono Fijo">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef3Mov' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="text" name='CliRefMov2' value="" placeholder="Teléfono Móvil">
       </div>
     </div>
     <h5>Amigo 2</h5>
     <div class="form-group row">
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef4Nombre' value="" placeholder="Nombre">
+        <input class="form-control" type="text" name='CliRefNombre3' value="" placeholder="Nombre">
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name='CliRef4Apellido' value="" placeholder="Apellido">
+        <input class="form-control" type="text" name='CliRefApellido3' value="" placeholder="Apellido">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef4Tel' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="text" name='CliRefTel3' value="" placeholder="Teléfono Fijo">
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRef4Mov' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="text" name='CliRefMov3' value="" placeholder="Teléfono Móvil">
       </div>
     </div>
 
     <div class="form-group row">
       <div class="form-group col-md-10"></div>
       <div class="form-group col-md-2">
-        <button class="btn btn-primary" type="submit" name="btnGuardar" style="align:right;">Guardar</button>
-        <button class="btn btn-success" type="button" name="btnSiguiente">Avanzar</button>
+        <button class="btn btn-primary" type="button" name="btnGuardar" onclick="">Guardar</button>
+        <button class="btn btn-success" type="submit" name="btnSiguiente">Avanzar</button>
       </div>
     </div>
 
@@ -249,6 +262,13 @@
   <a class="btn btn-primary" href="#" id="toggleNavColor">Toggle Navbar Color</a>
    Blank div to give the page height to preview the fixed vs. static navbar-->
 </div>
+
+    <script src="../../recursos/js/CliGeneral.js"></script>
+    <script src="../../recursos/js/CliValidate.js"></script>
+
+  
+
 <!--
-<script src="../../recursos/js/CliValidate.js"></script>
+
+
 -->

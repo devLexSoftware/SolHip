@@ -2,14 +2,12 @@
 $('document').ready(function(){
   // Validación para campos de texto exclusivo, sin caracteres especiales ni números
   var nameregex = /^[a-zA-Z ]+$/;
-
   $.validator.addMethod("validname", function( value, element ) {
     return this.optional( element ) || nameregex.test( value );
   });
 
   // Máscara para validación de Email
   var eregex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
   $.validator.addMethod("validemail", function( value, element ) {
     return this.optional( element ) || eregex.test( value );
   });
@@ -38,6 +36,9 @@ $('document').ready(function(){
         minlength: 13,
         maxlength: 13
       },
+      cliNivAcademico: {
+        validname: true
+      },
 //--Validación para informacion direccion
       cliCalle: {
         required: true
@@ -48,17 +49,44 @@ $('document').ready(function(){
       cliNumExt: {
         required: true
       },
+      cliCP: {
+      },
       cliAntiguedad: {
         required: true
       },
 //--Validación para informacion localizacion
       cliTelCasa: {
-        required: true,
+        required: true
+      },
+      cliTelMovil: {
       },
       cliEmail: {
         validemail: true,
         required: true
-      }
+      },
+//--Validación para Iformación empresa
+      cliEmpresaNombre: {
+        required: true,
+        validname: true,
+        minlength: 4
+      },
+      cliEmpresaPuesto: {
+        required: true,
+        validname: true,
+        minlength: 4
+      },
+      cliEmpresaCalle: {
+        minlength: 4
+      },
+      cliEmpresaColonia: {
+        minlength: 4
+      },
+      cliEmpresaCP: {
+      },
+      cliEmpresaAnt: {
+      },
+
+
     },
 
 //--Mensajes para informacion principal
@@ -121,9 +149,8 @@ $('document').ready(function(){
 
 
     submitHandler: function(form) {
-      alert();
       form.action="../clientes/actions/newCliente.php";
-      form.submit();
+      form.submit();      
     }
   });
 })

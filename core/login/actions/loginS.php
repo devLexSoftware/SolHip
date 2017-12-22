@@ -11,17 +11,20 @@
     $result = mysqli_query($con,"SELECT * FROM Usuarios WHERE usuario ='".$usuario."'");
     if($row = mysqli_fetch_array($result)){
       if($row['pass'] == $password){
+        $id = $row['id'];
         session_start();
         $_SESSION['valida'] = "true";
         $_SESSION['usuario'] = $usuario;
         $_SESSION['nombre'] = $row['nombre'] . " " . $row['apellido'];
         $_SESSION['tipo'] = $row['tipo'];
         $_SESSION['foto'] = $row['img'];
-        header("location:../../templates/index.php");
+        $result = mysqli_query($con,"INSERT INTO RegistroUsuarios(pk_Usuarios,usuario, estatus) values (".$id.",'".$_SESSION['usuario']."', 1)");
+        $_SESSION['pk'] = mysqli_insert_id($con);
+
+        header("location:../../templates/index.php?p=in");
       }
       else {
         header("location:../index.php");
-
         exit();
       }
     }

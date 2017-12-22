@@ -22,8 +22,21 @@
   <!-- Otros -->
   <link href="../../recursos/css/complementos.css" rel="stylesheet">
 
+  <script type="text/javascript">
+  window.onload=function(){
+    query=window.location.search.substring(1);
+    q=query.split("&");
+    vars=[];
+    for(i=0;i<q.length;i++){
+      x=q[i].split("=");
+      k=x[0];
+      v=x[1];
+      vars[k]=v;
+    }
+    abrir(vars['p'],vars['ref']);
+  };
+  </script>
 </head>
-
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -284,13 +297,11 @@
       $('nav').toggleClass('bg-dark bg-light');
       $('body').toggleClass('bg-dark bg-light');
     });
-
     </script>
 
     <!-- Js para llamar formularios -->
+    <script src="../../recursos/js/General.js"></script>
 
-    <script src="../../recursos/js/CliGeneral.js"></script>
-    
   </div>
 </body>
 

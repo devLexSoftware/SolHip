@@ -1,54 +1,56 @@
 <?php
 include("../../config/conexion.php");
-function died($error) {
+session_start();
+/*function died($error) {
         echo "Lo sentimos, hubo un error en sus datos y el formulario no puede ser enviado en este momento. ";
         echo "Detalle de los errores.<br /><br />";
         echo $error."<br /><br />";
         echo "Por favor corrija estos errores e inténtelo de nuevo.<br /><br />";
         die();
-    }
+    }*/
 
 $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   if (mysqli_connect_errno()) {
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
   else {
-/*
-    if(!isset($_POST['cliNombre']) ||
-       !isset($_POST['cliApellido']) ||
-       !isset($_POST['cliNss']) ||
-       !isset($_POST['cliRfc']) ||
-       !isset($_POST['cliFechNacimiento']) ||
-       !isset($_POST['cliNivAcademico']) ||
+
+    $error_message = "Exito";
+
+    if(empty($_POST['cliNombre']) ||
+       empty($_POST['cliApellido']) ||
+       empty($_POST['cliNss']) ||
+       empty($_POST['cliFechNacimiento']) ||
+       empty($_POST['cliNivAcademico']) ||
 
        //Datos de direccion
-       !isset($_POST['cliCalle']) ||
-       !isset($_POST['cliColonia']) ||
-       !isset($_POST['cliNumExt']) ||
-       !isset($_POST['cliNumInt']) ||
-       !isset($_POST['cliCP']) ||
-       !isset($_POST['cliAntiguedad']) ||
-       !isset($_POST['cliTipo']) ||
+       empty($_POST['cliCalle']) ||
+       empty($_POST['cliColonia']) ||
+       empty($_POST['cliNumExt']) ||
+       empty($_POST['cliNumInt']) ||
+       empty($_POST['cliCP']) ||
+       empty($_POST['cliAntiguedad']) ||
+       empty($_POST['cliTipo']) ||
 
        //Datos de localizacion
-       !isset($_POST['cliTelCasa']) ||
-       !isset($_POST['cliTelMovil']) ||
-       !isset($_POST['cliEmail']) ||
+       empty($_POST['cliTelCasa']) ||
+       empty($_POST['cliTelMovil']) ||
+       empty($_POST['cliEmail']) ||
 
        //Informacion Laboral
-       !isset($_POST['cliEmpresaNombre']) ||
-       !isset($_POST['cliEmpresaPuesto']) ||
-       !isset($_POST['cliEmpresaCalle']) ||
-       !isset($_POST['cliEmpresaColonia']) ||
-       !isset($_POST['cliEmpresaNExt']) ||
-       !isset($_POST['cliEmpresaNInt']) ||
-       !isset($_POST['cliEmpresaCP']) ||
-       !isset($_POST['cliEmpresaAnt']) ||
-       !isset($_POST['cliEmpresaTel']) ||
-       !isset($_POST['cliEmpresaTelExt'])) {
-          died('Lo sentimos pero parece haber un problema con los datos enviados.');
+       empty($_POST['cliEmpresaNombre']) ||
+       empty($_POST['cliEmpresaPuesto']) ||
+       empty($_POST['cliEmpresaCalle']) ||
+       empty($_POST['cliEmpresaColonia']) ||
+       empty($_POST['cliEmpresaNExt']) ||
+       empty($_POST['cliEmpresaNInt']) ||
+       empty($_POST['cliEmpresaCP']) ||
+       empty($_POST['cliEmpresaAnt']) ||
+       empty($_POST['cliEmpresaTel']) ||
+       empty($_POST['cliEmpresaTelExt'])) {
+         $error_message = "Faltan campos";
         }
-*/
+
     //--Datos de usuario
     $cli_nom= $_POST['cliNombre'];
     $cli_ape = $_POST['cliApellido'];
@@ -83,12 +85,12 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $cli_EmpTel = $_POST['cliEmpresaTel'];
     $cli_EmpTelExt = $_POST['cliEmpresaTelExt'];
 
-    $error_message = "Error";
+
     $_SESSION['nombre'] = "otro";
 
 
     //--Insertar nuevo usuario
-    $ref = "Cli-".substr($cli_nom,0, 2).substr($cli_ape, 0, 2)."-".substr($cli_fechNac,0, 4);
+    $ref = "Cli79-".substr($cli_nom,0, 2).substr($cli_ape, 0, 2)."-".substr($cli_fechNac,0, 4);
     $result = mysqli_query($con,"INSERT INTO Clientes(usuCreacion,ref,nombre,apellido,fechNacimiento,nss)
       VALUES('".$_SESSION['nombre']."', '".$ref."', '".$cli_nom."', '".$cli_ape."',".$cli_fechNac.", '".$cli_nss."'  );");
     $id = mysqli_insert_id($con);
@@ -112,8 +114,33 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Insertar informacion laboral
     $result = mysqli_query($con,"INSERT INTO DatosLaboral(usuCreacion,pk_Cliente,nivAcademico,nomEmpresa,pueEmpresa,antEmpresa,calle,numInt,numExt,colonia,cp,ext,tel)
-      VALUES('".$_SESSION['nombre']."',".$id.", '".$cli_NivAca."', '".$cli_EmpNom."', '".$cli_EmpPue."', '".$cli_EmpAnt."', ".$cli_EmpCal."',".$cli_EmpNInt."',
-      ".$cli_EmpNExt."',".$cli_EmpCol."',".$cli_EmpCp."',".$cli_EmpTelExt."',".$cli_EmpTel." )");
+      VALUES('".$_SESSION['nombre']."',".$id.", '".$cli_NivAca."', '".$cli_EmpNom."', '".$cli_EmpPue."', '".$cli_EmpAnt."', '".$cli_EmpCal."','".$cli_EmpNInt."',
+      '".$cli_EmpNExt."','".$cli_EmpCol."',".$cli_EmpCp.",'".$cli_EmpTelExt."','".$cli_EmpTel."' )");
+
+    //--Insertar informacion Contactos
+    $count = 0;
+    $cli_ConParentezco = "Familiar";
+    while ($count < 4) {
+      $cli_ConNombre = $_POST['CliRefNombre'.$count];
+      $cli_ConApellido = $_POST['CliRefApellido'.$count];
+      $cli_ConTel = $_POST['CliRefTel'.$count];
+      $cli_ConMov = $_POST['CliRefMov'.$count];
+      $result = mysqli_query($con,"INSERT INTO Contactos(usuCreacion,pk_Cliente,nombre,apellido,parentezco,telCasa,telMovil)
+        VALUES('".$_SESSION['nombre']."', ".$id.", '".$cli_ConNombre."', '".$cli_ConApellido."','".$cli_ConParentezco."','".$cli_ConTel."','".$cli_ConMov."');");
+      if ($count == 1) {
+        $cli_ConParentezco = "Amigo";
+      }
+      $count++;
+    }
+
+    if ($error_message != "Exito") {
+      //---Añadir docomentos
+      header("Location: ../../templates/index.php?p=cS&ref=".$ref);
+    }
+    else{
+      //---Faltan campos
+      header("Location: ../../templates/index.php?p=cf&ref=".$ref);
+    }
 
   }
 ?>
