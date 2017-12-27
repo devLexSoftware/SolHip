@@ -246,10 +246,30 @@
       </div>
     </div>
 
+    <h3>Información para credito</h3>
+    <hr>
+    <div class="form-group row">
+      <div class="form-group col-md-4">
+        <p class="sMargen">Banco</p>
+        <input class="form-control" type="text" name="cliBanco" value="" placeholder="Banco">
+        <span id="error" class="invalid-feedback"></span>
+      </div>
+      <div class="form-group col-md-2">
+        <p class="sMargen">Monto de crédito</p>
+        <input class="form-control" type="number" name="cliCredito" value="" placeholder="Crédito">
+        <span id="error" class="invalid-feedback"></span>
+      </div>
+      <div class="form-group col-md-2">
+        <p class="sMargen">Ingresos</p>
+        <input class="form-control" type="number" name="cliIngresos" value="" placeholder="Ingresos">
+        <span id="error" class="invalid-feedback"></span>
+      </div>
+    </div>
+    <br>
+
     <div class="form-group row">
       <div class="form-group col-md-10"></div>
       <div class="form-group col-md-2">
-        <button class="btn btn-primary" type="button" name="btnGuardar" onclick="">Guardar</button>
         <button class="btn btn-success" type="submit" name="btnSiguiente">Avanzar</button>
       </div>
     </div>
@@ -266,7 +286,7 @@
     <script src="../../recursos/js/CliGeneral.js"></script>
     <script src="../../recursos/js/CliValidate.js"></script>
 
-  
+
 
 <!--
 

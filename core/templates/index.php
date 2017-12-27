@@ -62,7 +62,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseComponents">
             <li>
-              <a href="navbar.html">Listado</a>
+              <a onclick="abrir('ListClientes')">Listado</a>
             </li>
             <li>
               <a onclick="abrir('Clientes')">Ingresar</a>

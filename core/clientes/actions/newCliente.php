@@ -16,6 +16,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   else {
 
     $error_message = "Exito";
+    $cli_estado = "Completo";
 
     if(empty($_POST['cliNombre']) ||
        empty($_POST['cliApellido']) ||
@@ -47,8 +48,14 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
        empty($_POST['cliEmpresaCP']) ||
        empty($_POST['cliEmpresaAnt']) ||
        empty($_POST['cliEmpresaTel']) ||
-       empty($_POST['cliEmpresaTelExt'])) {
+       empty($_POST['cliEmpresaTelExt']) ||
+
+       //Informacion credito
+       empty($_POST['cliBanco']) ||
+       empty($_POST['cliCredito']) ||
+       empty($_POST['cliIngresos'])) {
          $error_message = "Faltan campos";
+         $cli_estado = "Sin completar";
         }
 
     //--Datos de usuario
@@ -56,7 +63,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $cli_ape = $_POST['cliApellido'];
     $cli_nss = $_POST['cliNss'];
     $cli_rfc = $_POST['cliRfc'];
-    $cli_fechNac = $_POST['cliFechNacimiento'];
+    $cli_fechNac = $_POST['cliFechNacimiento'];    
     $cli_NivAca = $_POST['cliNivAcademico'];
 
     //--Datos Direccion
@@ -85,14 +92,20 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $cli_EmpTel = $_POST['cliEmpresaTel'];
     $cli_EmpTelExt = $_POST['cliEmpresaTelExt'];
 
+    //--Informacion credito
+    $cli_Banco = $_POST['cliBanco'];
+    $cli_Credito = $_POST['cliCredito'];
+    $cli_Ingresos = $_POST['cliIngresos'];
+
 
     $_SESSION['nombre'] = "otro";
 
 
     //--Insertar nuevo usuario
-    $ref = "Cli79-".substr($cli_nom,0, 2).substr($cli_ape, 0, 2)."-".substr($cli_fechNac,0, 4);
-    $result = mysqli_query($con,"INSERT INTO Clientes(usuCreacion,ref,nombre,apellido,fechNacimiento,nss)
-      VALUES('".$_SESSION['nombre']."', '".$ref."', '".$cli_nom."', '".$cli_ape."',".$cli_fechNac.", '".$cli_nss."'  );");
+    $ref = "Cli-".substr($cli_nom,0, 3).substr($cli_ape, 0, 3)."-".substr($cli_fechNac,0, 4);
+    $find = str_replace(' ', '', $cli_nom).str_replace(' ', '', $cli_ape);
+    $result = mysqli_query($con,"INSERT INTO Clientes(usuCreacion,ref,nombre,apellido,fechNacimiento,nss,estado,find)
+      VALUES('".$_SESSION['nombre']."', '".$ref."', '".$cli_nom."', '".$cli_ape."','".$cli_fechNac."', '".$cli_nss."', '".$cli_estado."', '".$find."'  );");
     $id = mysqli_insert_id($con);
 
 
@@ -133,12 +146,16 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       $count++;
     }
 
-    if ($error_message != "Exito") {
-      //---Añadir docomentos
+    //--Insertar informacion de perfil
+    $result = mysqli_query($con,"INSERT INTO PerfilCliente(usuCreacion,pk_Cliente,banco,credito,salario)
+      VALUES('".$_SESSION['nombre']."', ".$id.", '".$cli_Banco."', '".$cli_Credito."','".$cli_Ingresos."');");
+
+    if ($error_message == "Exito") {
+      //---Faltan campos
       header("Location: ../../templates/index.php?p=cS&ref=".$ref);
     }
     else{
-      //---Faltan campos
+      //---Añadir docomentos
       header("Location: ../../templates/index.php?p=cf&ref=".$ref);
     }
 
