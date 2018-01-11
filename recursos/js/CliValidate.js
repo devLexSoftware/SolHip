@@ -22,7 +22,6 @@ $('document').ready(function(){
         validname: true,
         minlength: 4
       },
-
       cliApellido: {
         required: true,
         validname: true,
@@ -64,14 +63,11 @@ $('document').ready(function(){
         validemail: true,
         required: true
       },
-//--Validación para Iformación empresa
+//--Validación para Información empresa
       cliEmpresaNombre: {
-        required: true,
-        validname: true,
         minlength: 4
       },
       cliEmpresaPuesto: {
-        required: true,
         validname: true,
         minlength: 4
       },
@@ -82,9 +78,44 @@ $('document').ready(function(){
         minlength: 4
       },
       cliEmpresaCP: {
+        minlength: 4
       },
       cliEmpresaAnt: {
       },
+//--Validacion para referencias
+      CliRefNombre0:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefApellido0:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefNombre1:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefApellido1:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefNombre2:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefApellido2:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefNombre3:{
+        validname: true,
+        minlength: 4
+      },
+      CliRefApellido3:{
+        validname: true,
+        minlength: 4
+      }
+
 
 
     },
@@ -133,6 +164,58 @@ $('document').ready(function(){
         validemail: "Introduzca correctamente su correo",
         required: "Ingresa un correo de localización"
       },
+//--Mensajes para informacion de empresa
+      cliEmpresaNombre: {
+        minlength: "El nombre es demasiado corto"
+      },
+      cliEmpresaPuesto: {
+        validname: "El nombre contiene caracteres no permitidos",
+        minlength: "El nombre es demasiado corto"
+      },
+      cliEmpresaCalle: {
+        minlength: "El nombre es demasiado corto"
+      },
+      cliEmpresaColonia: {
+        minlength: "El nombre es demasiado corto"
+      },
+      cliEmpresaCP: {
+        minlength: "El nombre es demasiado corto"
+      },
+      cliEmpresaAnt: {
+      },
+      //--Validacion para referencias
+      CliRefNombre0:{
+        validname: "El nombre contiene caracteres no permitidos",
+        minlength: "El nombre es demasiado corto"
+      },
+      CliRefApellido0:{
+        validname: "El apellido contiene caracteres no permitidos",
+        minlength: "El apellido es demasiado corto"
+      },
+      CliRefNombre1:{
+        validname: "El nombre contiene caracteres no permitidos",
+        minlength: "El nombre es demasiado corto"
+      },
+      CliRefApellido1:{
+        validname: "El apellido contiene caracteres no permitidos",
+        minlength: "El apellido es demasiado corto"
+      },
+      CliRefNombre2:{
+        validname: "El nombre contiene caracteres no permitidos",
+        minlength: "El nombre es demasiado corto"
+      },
+      CliRefApellido2:{
+        validname: "El apellido contiene caracteres no permitidos",
+        minlength: "El apellido es demasiado corto"
+      },
+      CliRefNombre3:{
+        validname: "El nombre contiene caracteres no permitidos",
+        minlength: "El nombre es demasiado corto"
+      },
+      CliRefApellido3:{
+        validname: "El apellido contiene caracteres no permitidos",
+        minlength: "El apellido es demasiado corto"
+      }
     },
 
 
@@ -147,10 +230,28 @@ $('document').ready(function(){
       $(element).closest('.form-group').find('.invalid-feedback').html('');
     },
 
-
     submitHandler: function(form) {
-      form.action="../clientes/actions/newCliente.php";
-      form.submit();      
+      query=window.location.search.substring(1);
+      q=query.split("&");
+      vars=[];
+      for(i=0;i<q.length;i++){
+        x=q[i].split("=");
+        k=x[0];
+        v=x[1];
+        vars[k]=v;
+      }
+
+      switch (form.name) {
+        case "Cliente":
+          form.action="../clientes/actions/newCliente.php";
+          break;
+        case "ClienteUpdate":
+          form.action="../clientes/actions/updateCliente.php?ref="+vars['ref'];
+          break;
+        default:
+
+      }
+      form.submit();
     }
   });
 })

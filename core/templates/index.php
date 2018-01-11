@@ -214,9 +214,9 @@
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
-              <input class="form-control" type="text" placeholder="Search for...">
+              <input class="form-control" type="text" placeholder="Buscar cliente" id="idfilName">
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" onclick="buscarCliente()">
                   <i class="fa fa-search"></i>
                 </button>
               </span>
@@ -273,6 +273,9 @@
         </div>
       </div>
     </div>
+
+    <?php include("../clientes/alerta.php") ?>
+
     <!-- Bootstrap core JavaScript-->
     <script src="../../recursos/vendor/jquery/jquery.min.js"></script>
     <script src="../../recursos/validate/dist/jquery.validate.min.js"></script>
@@ -301,6 +304,7 @@
 
     <!-- Js para llamar formularios -->
     <script src="../../recursos/js/General.js"></script>
+    <script src="../../recursos/js/CliGeneral.js"></script>
 
   </div>
 </body>

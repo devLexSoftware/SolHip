@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap Template</title>
+    <title>Solidez Hipotecaria</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,7 +17,7 @@
           input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 
         .intro-2 {
-            background: url("http://mdbootstrap.com/img/Photos/Others/img%20(42).jpg")no-repeat center center;
+            background: url("../../recursos/img/nature.jpg")no-repeat center center;
             background-size: cover;
         }
         .top-nav-collapse {

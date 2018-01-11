@@ -59,30 +59,38 @@
     <hr>
     <div class="form-group row">
       <div class="form-group col-md-6">
+        <p class="sMargen">Calle</p>
         <input class="form-control" type="text" name="cliCalle" value="" placeholder="Calle">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
+        <p class="sMargen">Colonia</p>
         <input class="form-control" type="text" name="cliColonia" value="" placeholder="Colonia">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliNumExt" value="" placeholder="# Exterior">
+        <p class="sMargen"># Ext</p>
+        <input class="form-control" type="text" name="cliNumExt" value="" placeholder="#">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliNumInt" value="" placeholder="# Interior">
+        <p class="sMargen"># Int</p>
+        <input class="form-control" type="text" name="cliNumInt" value="" placeholder="#">
       </div>
       <div class="form-group col-md-2">
+        <p class="sMargen">C.P.</p>
         <input class="form-control" type="text" name="cliCP" value="" placeholder="C.P.">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
+        <p class="sMargen">Antigüedad</p>
         <input class="form-control" type="text" name="cliAntiguedad" value="" placeholder="Antigüedad">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
+        <p class="sMargen">Tipo de vivienda</p>
         <select class="form-control" name="cliTipo" value="" placeholder="Tipo vivienda">
-          <option value="Familiar">Familiar</option>
+          <option selected="true" disabled="disabled">Familiar</option>
           <option value="Propia">Propia</option>
           <option value="Rentada">Rentada</option>
         </select>
@@ -112,6 +120,7 @@
     <br>
     <h3>Información Complementaria</h3>
     <hr>
+
     <div class="form-group row">
       <div class="form-group col-md-2">
         <p class="sMargen">Dependientes Económicos</p>
@@ -147,35 +156,43 @@
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
+        <p class="sMargen">Calle</p>
         <input class="form-control" type="text" name="cliEmpresaCalle" value="" placeholder="Calle">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
+        <p class="sMargen">Colonia</p>
         <input class="form-control" type="text" name="cliEmpresaColonia" value="" placeholder="Colonia">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliEmpresaNExt" value="" placeholder="# Exterior">
+        <p class="sMargen"># Ext</p>
+        <input class="form-control" type="text" name="cliEmpresaNExt" value="" placeholder="#">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliEmpresaNInt" value="" placeholder="# Interior">
+        <p class="sMargen"># Int</p>
+        <input class="form-control" type="text" name="cliEmpresaNInt" value="" placeholder="#">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="number" name="cliEmpresaCP" value="" placeholder="CP">
+        <p class="sMargen">C.P.</p>
+        <input class="form-control" type="number" name="cliEmpresaCP" value="" placeholder="C.P.">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="number" name="cliEmpresaAnt" value="" placeholder="Tiempo en la empresa">
+        <p class="sMargen">Antigüedad</p>
+        <input class="form-control" type="number" name="cliEmpresaAnt" value="" placeholder="Antigüedad">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
+        <p class="sMargen">Teléfono</p>
         <input class="form-control" type="text" name="cliEmpresaTel" value="" placeholder="Teléfono">
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="text" name="cliEmpresaTelExt" value="" placeholder="Extensión">
+        <p class="sMargen">Extensión</p>
+        <input class="form-control" type="text" name="cliEmpresaTelExt" value="" placeholder="Ext.">
         <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
@@ -188,30 +205,38 @@
     <div class="form-group row">
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefNombre0' value="" placeholder="Nombre">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefApellido0' value="" placeholder="Apellido">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefTel0' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="number" name='CliRefTel0' value="" placeholder="Teléfono Fijo">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefMov0' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="number" name='CliRefMov0' value="" placeholder="Teléfono Móvil">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
     <h5>Familiar 2</h5>
     <div class="form-group row">
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefNombre1' value="" placeholder="Nombre">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefApellido1' value="" placeholder="Apellido">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefTel1' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="number" name='CliRefTel1' value="" placeholder="Teléfono Fijo">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefMov1' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="number" name='CliRefMov1' value="" placeholder="Teléfono Móvil">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
     <hr>
@@ -219,30 +244,38 @@
     <div class="form-group row">
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefNombre2' value="" placeholder="Nombre">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefApellido2' value="" placeholder="Apellido">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefTel2' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="number" name='CliRefTel2' value="" placeholder="Teléfono Fijo">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefMov2' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="number" name='CliRefMov2' value="" placeholder="Teléfono Móvil">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
     <h5>Amigo 2</h5>
     <div class="form-group row">
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefNombre3' value="" placeholder="Nombre">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-6">
         <input class="form-control" type="text" name='CliRefApellido3' value="" placeholder="Apellido">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefTel3' value="" placeholder="Teléfono Fijo">
+        <input class="form-control" type="number" name='CliRefTel3' value="" placeholder="Teléfono Fijo">
+        <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <input class="form-control" type="text" name='CliRefMov3' value="" placeholder="Teléfono Móvil">
+        <input class="form-control" type="number" name='CliRefMov3' value="" placeholder="Teléfono Móvil">
+        <span id="error" class="invalid-feedback"></span>
       </div>
     </div>
 
@@ -260,8 +293,21 @@
         <span id="error" class="invalid-feedback"></span>
       </div>
       <div class="form-group col-md-2">
-        <p class="sMargen">Ingresos</p>
-        <input class="form-control" type="number" name="cliIngresos" value="" placeholder="Ingresos">
+        <p class="sMargen">Solicitud de crédito</p>
+        <input class="form-control" type="number" name="cliSolicitud" value="" placeholder="Solicitud">
+        <span id="error" class="invalid-feedback"></span>
+      </div>
+      <div class="form-group col-md-4">
+        <p class="sMargen">Perfil</p>
+        <select class="form-control" name="cliPerfil" value="" placeholder="Perfil">
+          <option selected="true" disabled="disabled">Perfil</option>
+          <option value="Hipotecario en Confinanciamiento">Hipotecario en Confinanciamiento</option>
+          <option value="Hipotecario Persona Fisica con Actividad Independiente">Hipotecario Persona Fisica con Actividad Independiente</option>
+          <option value="Hipotecario Salario Fijo">Hipotecario Salario Fijo</option>
+          <option value="COFINAVIT">COFINAVIT</option>
+          <option value="Hipotecario Persona Fisica con Actividad Empresarial">Hipotecario Persona Fisica con Actividad Empresarial</option>
+          <option value="Hipotecario Pensión">Hipotecario Pensión</option>
+        </select>
         <span id="error" class="invalid-feedback"></span>
       </div>
     </div>

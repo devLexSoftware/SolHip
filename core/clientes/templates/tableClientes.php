@@ -18,9 +18,26 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
   else {
+  $origen = $_GET['or'];
+  if($origen == 'bus'){
+    $filtro =" WHERE MATCH(Clientes.find) AGAINST('".$_GET['filtro']."') ";
+  }
+  else {
+    $filtro = $_POST['filtro'];
+    if ($filtro != null)
+    {
+      $filtro = " WHERE ".$filtro;
+    }
+    else {
+        $filtro = "";
+    }
+  }
     $result = mysqli_query($con,'SELECT Clientes.ref, Clientes.nombre, Clientes.apellido, Clientes.estado, PerfilCliente.banco, PerfilCliente.nombre as perfil, DatosLocalizacion.telCasa, DatosLocalizacion.telMovil, DatosLocalizacion.email FROM Clientes
               INNER JOIN PerfilCliente ON Clientes.id = PerfilCliente.pk_Cliente
-              INNER JOIN DatosLocalizacion ON Clientes.id = DatosLocalizacion.pk_Cliente;');
+              INNER JOIN DatosLocalizacion ON Clientes.id = DatosLocalizacion.pk_Cliente'.$filtro);
+    if ($origen == 'bus') {
+      echo '<h6>Resultados: </h6>';
+    }    
     echo '
     <table class="table table-striped table-hover ">
       <thead>
@@ -29,8 +46,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
           <th>Estado</th>
           <th>Banco</th>
           <th>Perfil</th>
-          <th>Localizacion</th>
-          <th></th>
+          <th>Información</th>
+          <th>Opciones</th>
         </tr>
       </thead>
       <tbody> ';
@@ -42,7 +59,10 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
           <td>'.$elemento["banco"].'</td>
           <td>'.$elemento["perfil"].'</td>
           <td>
-              <a data-toggle="modal" data-target="#exampleModal'.$count_modal.'">ver</a>
+              <button type="button" class="btn btn-info" style="padding:0 0 0 0; width:80px;" data-toggle="modal" data-target="#exampleModal'.$count_modal.'">Info</button>
+          </td>
+          <td>
+              <button type="button" class="btn btn-outline-info" style="padding:0 0 0 0; width:80px; " data-toggle="modal" data-target="#exampleModal2'.$count_modal.'">Acciones</button>
           </td>
           <div class="modal fade" id="exampleModal'.$count_modal.'">
             <div class="modal-dialog" role="document">
@@ -73,9 +93,48 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               </div>
             </div>
           </div>
-          <td><a href="../templates/index.php?p=cu&ref='.$elemento["ref"].'">Ir al registro</a></td>
+          <div class="modal fade" id="exampleModal2'.$count_modal.'">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel2'.$count_modal.'">Opciones</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body row">
+                  <div class="form-group col-md-3">
+                    <p class="sMargen"><b>Editar</b></p>
+                    <a style="text-decoration: none;" href="../templates/index.php?p=cu&ref='.$elemento["ref"].'" class="fa fa-address-book fa-3x" style="text-align:center;"></a>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <p class="sMargen"><b>Registrar</b></p>
+                    <a style="text-decoration: none;" href="../templates/index.php?p=cs&ref='.$elemento["ref"].'" class="fa fa-folder-open fa-3x" style="text-align:center;"></a>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <p class="sMargen"><b>Imprimir</b></p>
+                    <a style="text-decoration: none;" href="../templates/index.php?p=imba&ref='.$elemento["ref"].'" class="fa fa-bank fa-3x" style="text-align:center;"></a>
+                  </div>
+                  ';
+                  if ($elemento['banco'] == "HSBC") {
+                    echo '
+                    <div class="form-group col-md-3">
+                    <p class="sMargen">-</p>
+                      <a style="text-decoration: none;" href="../templates/index.php?p=imbr&ref='.$elemento["ref"].'" class="fa fa-pencil fa-3x" style="text-align:center;"></a>
+                    </div>
+                    ';
+                  }
+                  echo '
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary" type="button" data-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </tr>
         ';
+        $count_modal++;
       }
       echo '
       </tbody>
@@ -83,4 +142,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     ';
 
   }
+
+
+  //<td><a href="../templates/index.php?p=cu&ref='.$elemento["ref"].'">Editar</a></td>
+  //<td><a href="../templates/index.php?p=cs&ref='.$elemento["ref"].'">Documentos</a></td>
   ?>
