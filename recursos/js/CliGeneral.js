@@ -99,7 +99,9 @@ function filtrarListaClientes(){
   }
   $.post("../clientes/templates/tableClientes.php", { filtro: filtro }, function(data){
     $("#divTableClientes").html(data);
+      $('#tableList').DataTable();
   });
+
 }
 
 

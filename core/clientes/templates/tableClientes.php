@@ -18,9 +18,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
   }
   else {
-  $origen = $_GET['or'];
   if($origen == 'bus'){
-    $filtro =" WHERE MATCH(Clientes.find) AGAINST('".$_GET['filtro']."') ";
+    $filtro =" WHERE MATCH(Clientes.find) AGAINST('".$_GET['ref']."') ";
   }
   else {
     $filtro = $_POST['filtro'];
@@ -36,10 +35,10 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               INNER JOIN PerfilCliente ON Clientes.id = PerfilCliente.pk_Cliente
               INNER JOIN DatosLocalizacion ON Clientes.id = DatosLocalizacion.pk_Cliente'.$filtro);
     if ($origen == 'bus') {
-      echo '<h6>Resultados: </h6>';
-    }    
+      echo '<h4>Resultados: '.mysqli_num_rows($result).'</h4>';
+    }
     echo '
-    <table class="table table-striped table-hover ">
+    <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="tableList">
       <thead>
         <tr class="info">
           <th>Cliente</th>

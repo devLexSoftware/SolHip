@@ -84,7 +84,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               $completo = "Completo";
             }
             else {
-              $completo = "Incompleto";
+              $completo = "Sin completar";
             }
             //--Para ingresa
             if (isset($elemento['id'])){
@@ -358,9 +358,15 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
         break;
     }
 
+    //--Para crear aviso
+    $result = mysqli_query($con,"SELECT find FROM Clientes WHERE ref = '$ref';");
+    $elemento = mysqli_fetch_array($result)
+    $result1 = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion)
+      VALUES('Se recibio nuevos documentos de cliente: $elemento[find]','actualizado');");
+
     //--Para imprimir
     if(array_key_exists('btnImprimir',$_POST)){
-      header("Location: ../../templates/index.php?p=im&ref=".$ref);     
+      header("Location: ../../templates/index.php?p=im&ref=".$ref);
     }
     else{
       header("Location: ../../templates/index.php?p=lc&ref=".$ref);

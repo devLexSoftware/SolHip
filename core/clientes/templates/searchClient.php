@@ -1,8 +1,6 @@
  <?php include("../config/bloque.php");
 
- $filtro = $_GET['ref'];
-
- ?>
+?>
 
  <div class="container-fluid">
 
@@ -17,10 +15,8 @@
    <h1>Resultados de la búsqueda</h1>
    <hr>
 
-   <form role="form-horizontal" method="post" id="formCliente" autocomplete="off" name="ListClient">
-     <h5>Clientes</h5>
+   <form role="form-horizontal" method="post" id="formCliente" autocomplete="off" name="ListClient">     
      <div class="" id="divTableClientes">
-
-       <?php $var="tableClientes.php?filtro=$filtro&or=bus";include($var); ?>
+       <?php $origen = "bus"; include("tableClientes.php"); ?>
      </div>
   </form>

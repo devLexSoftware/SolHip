@@ -90,7 +90,7 @@
       <div class="form-group col-md-6">
         <p class="sMargen">Tipo de vivienda</p>
         <select class="form-control" name="cliTipo" value="" placeholder="Tipo vivienda">
-          <option selected="true" disabled="disabled">Familiar</option>
+          <option selected="true" value="Familiar">Familiar</option>
           <option value="Propia">Propia</option>
           <option value="Rentada">Rentada</option>
         </select>

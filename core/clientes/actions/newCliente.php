@@ -8,7 +8,8 @@ session_start();
         echo "Por favor corrija estos errores e inténtelo de nuevo.<br /><br />";
         die();
     }*/
-
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
 $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   if (mysqli_connect_errno()) {
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -111,11 +112,12 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $result = mysqli_query($con,"INSERT INTO Clientes(usuCreacion,ref,nombre,apellido,fechNacimiento,nss,estado,find,nivAcademico,nDependientes)
       VALUES('".$_SESSION['nombre']."', '".$ref."', '".$cli_nom."', '".$cli_ape."','".$cli_fechNac."', '".$cli_nss."', '".$cli_estado."', '".$find."', '".$cli_NivAca."', ".$cli_NDepen." );");
     $id = mysqli_insert_id($con);
+    echo $id;
 
 
     //--Insertar direccion de usuario
     $result = mysqli_query($con,"INSERT INTO DatosLocalizacion(usuCreacion,pk_Cliente,calle,numInt,numExt,colonia,cp,tipVivienda,antVivienda,telCasa,telMovil,email)
-      VALUES('".$_SESSION['nombre']."', ".$id.", '".$cli_cal."', '".$cli_NIxt."', '".$cli_NExt."', '".$cli_col."', '".$cli_cp."', '".$cli_tipo."','".$cli_ant."','".$cli_tel."', '".$cli_mov."' ,'".$cli_ema."'  );");
+      VALUES('".$_SESSION['nombre']."', ".$id.", '".$cli_cal."', '".$cli_NInt."', '".$cli_NExt."', '".$cli_col."', '".$cli_cp."', '".$cli_tipo."','".$cli_ant."','".$cli_tel."', '".$cli_mov."' ,'".$cli_ema."'  );");
 
     //--Insertar información Dependientes
     //--Datos de Dependientes
@@ -158,9 +160,13 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $result = mysqli_query($con,"INSERT INTO DocumentosCliente(usuCreacion,pk_PerfilCliente)
       VALUES('".$_SESSION['nombre']."', ".$id_Perfil.");");
 
+    //--Para crear aviso
+    $result = mysqli_query($con,"INSERT INTO Avisos(mensaje, accion)
+      VALUES('Se agrego el cliente: $find','nuevo');");
+
     if ($error_message == "Exito") {
       //---Faltan campos
-      header("Location: ../../templates/index.php?p=cS&ref=".$ref);
+    header("Location: ../../templates/index.php?p=cS&ref=".$ref);
     }
     else{
       //---Añadir docomentos

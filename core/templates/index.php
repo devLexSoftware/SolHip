@@ -19,8 +19,12 @@
   <!-- Custom styles for this template-->
   <link href="../../recursos/css/sb-admin.css" rel="stylesheet">
 
+
+
   <!-- Otros -->
   <link href="../../recursos/css/complementos.css" rel="stylesheet">
+  <!-- Para las tablas -->
+  <link href="../../recursos/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
   <script type="text/javascript">
   window.onload=function(){
@@ -35,6 +39,7 @@
     }
     abrir(vars['p'],vars['ref']);
   };
+
   </script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -137,80 +142,38 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-envelope"></i>
-            <span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary">12 New</span>
+            <span class="d-lg-none">Mensajes
+              <span class="badge badge-pill badge-primary">1</span>
             </span>
             <span class="indicator text-primary d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>David Miller</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>Jane Smith</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <strong>John Doe</strong>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all messages</a>
+          <div class="dropdown-menu" aria-labelledby="messagesDropdown" id="divmessages">
+            <?php include('../default/messages.php'); ?>
+            <script type="text/javascript">
+              setInterval(function() {
+                 $('#divmessages').load('../default/messages.php');
+               }, 60 * 1000);
+            </script>
           </div>
         </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-bell"></i>
             <span class="d-lg-none">Alerts
-              <span class="badge badge-pill badge-warning">6 New</span>
+              <span class="badge badge-pill badge-warning">1</span>
             </span>
             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-              </span>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <span class="text-danger">
-                <strong>
-                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
-              </span>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-              </span>
-              <span class="small float-right text-muted">11:21 AM</span>
-              <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all alerts</a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown" id="divalerts">
+            <?php include('../default/alerts.php'); ?>
           </div>
         </li>
+
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
@@ -231,16 +194,15 @@
     </div>
   </nav>
 
-
   <div class="content-wrapper">
-
-      <!-- Contenido de la página, esto varia dependiendo del modulo-->
-
-      <div id="divContenido">
-
+    <div class="container-fluid">
+      <div class="row">
+        <div id="divContenido" class="form-group col-md-12">
+            <!-- Contenido de la página, esto varia dependiendo del modulo-->
+        </div>
       </div>
+    </div>
 
-      <!-- Contenido de la página, esto varia dependiendo del modulo-->
 
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -305,6 +267,9 @@
     <!-- Js para llamar formularios -->
     <script src="../../recursos/js/General.js"></script>
     <script src="../../recursos/js/CliGeneral.js"></script>
+    <!-- Para tablas -->
+    <script src="../../recursos/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../../recursos/vendor/datatables/dataTables.bootstrap4.js"></script>
 
   </div>
 </body>

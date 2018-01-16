@@ -3,6 +3,8 @@
   $usuario = $_POST[user1];
   $password = $_POST[pass1];
   $_SESSION['valida'] = 'false';
+  error_reporting(E_ALL);
+  ini_set('display_errors', '1');
   $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   if (mysqli_connect_errno()) {
       echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -20,7 +22,6 @@
         $_SESSION['foto'] = $row['img'];
         $result = mysqli_query($con,"INSERT INTO RegistroUsuarios(pk_Usuarios,usuario, estatus) values (".$id.",'".$_SESSION['usuario']."', 1)");
         $_SESSION['pk'] = mysqli_insert_id($con);
-
         header("location:../../templates/index.php?p=in");
       }
       else {
@@ -30,6 +31,7 @@
     }
     else {
       header("location:../index.php");
+
       exit();
     }
   }

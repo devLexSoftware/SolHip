@@ -17,7 +17,7 @@
           input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 
         .intro-2 {
-            background: url("../../recursos/img/nature.jpg")no-repeat center center;
+            background: url("../../recursos/img/sistema/nature.jpg")no-repeat center center;
             background-size: cover;
         }
         .top-nav-collapse {

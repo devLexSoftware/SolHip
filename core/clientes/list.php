@@ -47,7 +47,24 @@
         </select>
       </div>
     </div>
-    <div class="" id="divTableClientes">
-      <?php include("templates/tableClientes.php"); ?>
+
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> Clientes</div>
+      <div class="card-body">
+        <div class="table-responsive" id="divTableClientes">
+          <?php include("templates/tableClientes.php"); ?>
+        </div>
+      </div>
     </div>
+
+
+
   </form>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#tableList').DataTable();
+    } );
+
+</script>
