@@ -21,7 +21,7 @@
         $result3 = mysqli_query($con,"SELECT nombre, apellido FROM Clientes WHERE Clientes.ref = '".$ref."'");
         $elemento3 = mysqli_fetch_array($result3);
 
-  }
+  } 
 
 ?>
 

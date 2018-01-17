@@ -43,6 +43,11 @@ function abrir(archivo,ref){
       $("#divContenido").load('../../core/clientes/list.php');
       $('#ModalCambioDocumentos').modal('show');
       break;
+    //---Para borrar clientes y mandar mensaje
+    case "lcd":
+      $("#divContenido").load('../../core/clientes/list.php');
+      $('#ModalBorrado').modal('show');
+      break;
     case "im":
       messages();
       $("#divContenido").load('../../core/clientes/list.php');

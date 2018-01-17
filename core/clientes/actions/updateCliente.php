@@ -184,8 +184,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       }
 
     //--Para crear aviso
-    $result = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion)
-      VALUES('Se actualizo informacion del cliente: $find','actualizado');");
+    $result = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion,usuario)
+      VALUES('Se actualizo informacion del cliente: $find','actualizado','$_SESSION[nombre]');");
 
     if ($error_message == "Exito") {
       //----Formulario completado

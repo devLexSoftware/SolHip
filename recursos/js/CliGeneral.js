@@ -1,3 +1,22 @@
+function del(re,nombre)
+   {
+     /*$.post("../clientes/actions/deleteClient.php", { ref: re }, function(data){
+       $("#divTableClientes").html(data);
+         $('#tableList').DataTable();
+     });*/
+       $.ajax({
+           type:'POST', //aqui puede ser igual get
+           url: '../clientes/actions/deleteClient.php',//aqui va tu direccion donde esta tu funcion php
+           data: {ref:re,nom:nombre},//aqui tus datos
+           success:function(data){
+                 location.href="index.php?p=lcd&ref="+nombre
+          },
+          error:function(data){
+           alert('Hubo algun error, intente nuevamente')
+          }
+        });
+   }
+
 function CDependientes(cant) {
   var count = 0 ;
   var cadena = "";

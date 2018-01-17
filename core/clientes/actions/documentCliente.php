@@ -2,22 +2,6 @@
 include("../../config/conexion.php");
 session_start();
 
-require_once '../../../componentes/vendor/autoload.php';
-use Spipu\Html2Pdf\Html2Pdf;
-use Spipu\Html2Pdf\Exception\Html2PdfException;
-use Spipu\Html2Pdf\Exception\ExceptionFormatter;
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-function testfun()
-{
-  include '../templates/documentImprClientes.php';
-  $content = ob_get_clean();
-  $html2pdf = new Html2Pdf('P', 'A4', 'fr');
-  $html2pdf->writeHTML($content);
-  $html2pdf->output('exemple01.pdf');
-
-}
 
 //--Para checar si ya existe el registro
 $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -360,9 +344,9 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Para crear aviso
     $result = mysqli_query($con,"SELECT find FROM Clientes WHERE ref = '$ref';");
-    $elemento = mysqli_fetch_array($result)
-    $result1 = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion)
-      VALUES('Se recibio nuevos documentos de cliente: $elemento[find]','actualizado');");
+    $elemento = mysqli_fetch_array($result);
+    $result1 = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion,usuario)
+      VALUES('Se recibio nuevos documentos de cliente: $elemento[find]','actualizado','$_SESSION[nombre]');");
 
     //--Para imprimir
     if(array_key_exists('btnImprimir',$_POST)){

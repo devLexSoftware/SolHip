@@ -61,8 +61,9 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               <button type="button" class="btn btn-info" style="padding:0 0 0 0; width:80px;" data-toggle="modal" data-target="#exampleModal'.$count_modal.'">Info</button>
           </td>
           <td>
-              <button type="button" class="btn btn-outline-info" style="padding:0 0 0 0; width:80px; " data-toggle="modal" data-target="#exampleModal2'.$count_modal.'">Acciones</button>
+              <button type="button" class="btn btn-outline-info" style="padding:0 0 0 0; width:80px; " data-toggle="modal" data-target="#exampleModal2'.$count_modal.'">Acciones</button>            
           </td>
+
           <div class="modal fade" id="exampleModal'.$count_modal.'">
             <div class="modal-dialog" role="document">
               <div class="modal-content">

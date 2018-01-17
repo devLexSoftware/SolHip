@@ -161,8 +161,8 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
       VALUES('".$_SESSION['nombre']."', ".$id_Perfil.");");
 
     //--Para crear aviso
-    $result = mysqli_query($con,"INSERT INTO Avisos(mensaje, accion)
-      VALUES('Se agrego el cliente: $find','nuevo');");
+    $result = mysqli_query($con,"INSERT INTO Avisos(mensaje, accion,usuario)
+      VALUES('Se agrego el cliente: $find','nuevo','$_SESSION[nombre]');");
 
     if ($error_message == "Exito") {
       //---Faltan campos

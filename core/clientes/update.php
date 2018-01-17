@@ -12,7 +12,7 @@
     }
     else {
       $ref = $_GET['ref'];
-      $result = mysqli_query($con,"SELECT Clientes.nombre, Clientes.apellido, Clientes.nss, Clientes.rfc, Clientes.fechNacimiento, Clientes.nivAcademico, Clientes.nDependientes,
+      $result = mysqli_query($con,"SELECT Clientes.nombre, Clientes.find, Clientes.apellido, Clientes.nss, Clientes.rfc, Clientes.fechNacimiento, Clientes.nivAcademico, Clientes.nDependientes,
           DatosLocalizacion.calle, DatosLocalizacion.colonia, DatosLocalizacion.numInt, DatosLocalizacion.numExt, DatosLocalizacion.cp, DatosLocalizacion.antVivienda, DatosLocalizacion.tipVivienda,
           DatosLocalizacion.telCasa, DatosLocalizacion.telMovil, DatosLocalizacion.email
           FROM Clientes INNER JOIN DatosLocalizacion ON Clientes.id = DatosLocalizacion.pk_Cliente WHERE ref = '".$ref."'");
@@ -47,8 +47,15 @@
     <li class="breadcrumb-item active">Cliente</li>
   </ol>
 
+  <div class="row">
+    <div class="col-md-11">
+    <h1 style="margin: 0 0 0 0">Actualizar registro</h1>
+  </div>
+    <div class="col-md-1">
+    <a  href="#" data-toggle="modal" data-target="#deleteModal" class="fa fa-trash fa-2x" style="text-decoration: none; text-align:right; padding: 5px 0 0 0"></a>
+    </div>
+  </div>
 
-  <h1>Actualizar registro</h1>
   <hr>
   <h4> <?php echo $elemento['nombre']." ".$elemento['apellido'] ; ?></h4>
   <form role="form-horizontal" method="post" id="formCliente" autocomplete="off" name="ClienteUpdate">
@@ -123,6 +130,7 @@
           <option value="Rentada">Rentada</option>
         </select>
       </div>
+
     </div>
     <br>
 
@@ -332,8 +340,36 @@
     </div>
 
 
+
+
   </form>
+
+
+  <div class="modal fade" id="deleteModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Borrar</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body row">
+          <div class="form-group col-md-12">
+            <p class="sMargen">¿Esta seguro de borrar el registro: <?php echo $elemento[nombre]." ".$elemento[apellido]; ?>?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" type="button" data-dismiss="modal"  onclick="del('<?php echo $_GET[ref];?>', '<?php echo $elemento[find];?>')">Aceptar</button>
+          <button class="btn btn-secundary" type="button" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
+
 
 <script src="../../recursos/js/CliGeneral.js"></script>
 <script src="../../recursos/js/CliValidate.js"></script>

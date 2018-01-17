@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>SB Admin - Start Bootstrap Template</title>
+  <title>Solidez Hipotecaria</title>
   <!-- Bootstrap core CSS-->
   <link href="../../recursos/bootstrap/css/bootstrap.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -45,7 +45,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php">Solidez <b>Hipotecaria</b></a>
+    <a class="navbar-brand" href="index.php?p=in">Solidez <b>Hipotecaria</b></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -54,9 +54,15 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Perfil">
-          <a class="nav-link" href="index.html">
-            <img class="fa fa-2x fa-fw" src="data:image/png;base64,<?php echo base64_encode($_SESSION['foto']); ?>" />
-            <span class="nav-link-text"><?php echo ($_SESSION['nombre']); ?>  </span>
+          <a class="nav-link" href="#">
+            <?php if ($_SESSION[foto] != null) {
+              echo '<img class="fa fa-2x fa-fw" src="data:image/png;base64,<?php echo base64_encode($_SESSION[foto]); ?>" />';
+            }
+              else {
+                echo '<img class="fa fa-2x fa-fw" src="../../recursos/img/sistema/default-user.png" style:"width:10px; height:auto;"/>';
+              }
+              ?>
+            <span class="nav-link-text"><?php echo ($_SESSION[nombre]); ?>  </span>
           </a>
         </li>
 
@@ -81,7 +87,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.html">Pagina 1</a>
+              <a href="#">Pagina 1</a>
             </li>
           </ul>
         </li>
@@ -108,7 +114,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseContacs">
             <li>
-              <a href="login.html">Pagina 1</a>
+              <a href="#">Pagina 1</a>
             </li>
           </ul>
         </li>
@@ -119,7 +125,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseEvents">
             <li>
-              <a href="login.html">Pagina 1</a>
+              <a href="#">Pagina 1</a>
             </li>
           </ul>
         </li>
@@ -237,6 +243,7 @@
     </div>
 
     <?php include("../clientes/alerta.php") ?>
+    <?php include("../clientes/alertab.php") ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="../../recursos/vendor/jquery/jquery.min.js"></script>

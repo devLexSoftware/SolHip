@@ -17,7 +17,7 @@
         session_start();
         $_SESSION['valida'] = "true";
         $_SESSION['usuario'] = $usuario;
-        $_SESSION['nombre'] = $row['nombre'] . " " . $row['apellido'];
+        $_SESSION['nombre'] = $row['nombre'];
         $_SESSION['tipo'] = $row['tipo'];
         $_SESSION['foto'] = $row['img'];
         $result = mysqli_query($con,"INSERT INTO RegistroUsuarios(pk_Usuarios,usuario, estatus) values (".$id.",'".$_SESSION['usuario']."', 1)");

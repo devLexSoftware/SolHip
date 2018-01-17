@@ -22,23 +22,36 @@
       echo '
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#">
-        <span class="text-success">
-        <strong>';
+        ';
             switch ($elemento['accion']) {
               case 'nuevo':
-                echo '<i class="fa fa-long-arrow-up fa-fw"></i>Cliente nuevo';
+                echo '
+                <span class="text-success">
+                  <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Cliente nuevo
+                  </strong>
+                </span>';
                 break;
               case 'actualizado':
-                echo '<i class="fa fa-long-arrow-up fa-fw"></i>Cliente actualizado';
+                echo '
+                <span class="text-success">
+                  <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>Cliente actualizado
+                  </strong>
+                </span>';
                 break;
               case 'baja':
-                echo '<i class="fa fa-long-arrow-down fa-fw"></i>Cliente borrado';
+                echo '
+                <span class="text-danger">
+                  <strong>
+                  <i class="fa fa-long-arrow-down fa-fw"></i>Cliente borrado
+                  </strong>
+                </span>';
                 break;
               default:
                 break;
             }
-    echo '</strong>
-        </span>
+    echo '
         <span class="small float-right text-muted">'.$elemento['hora'].'</span>
         <div class="dropdown-message small">'.$elemento['mensaje'].'.</div>
       </a>
