@@ -62,7 +62,7 @@
                 echo '<img class="fa fa-2x fa-fw" src="../../recursos/img/sistema/default-user.png" style:"width:10px; height:auto;"/>';
               }
               ?>
-            <span class="nav-link-text"><?php echo ($_SESSION[nombre]); ?>  </span>
+            <span class="nav-link-text"><?php echo ($_SESSION[usuario]); ?>  </span>
           </a>
         </li>
 
@@ -76,58 +76,37 @@
               <a onclick="abrir('ListClientes')">Listado</a>
             </li>
             <li>
-              <a onclick="abrir('Clientes')">Ingresar</a>
+              <a onclick="abrir('Clientes')">Nuevo cliente</a>
             </li>
           </ul>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Generales">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">Generales</span>
+            <span class="nav-link-text" >Generales</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-            <li>
-              <a href="#">Pagina 1</a>
-            </li>
-          </ul>
+
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bitacora">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-book"></i>
             <span class="nav-link-text">Bitácora</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseMulti">
-            <li>
-              <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
-              <ul class="sidenav-third-level collapse" id="collapseMulti2">
-                <li>
-                  <a href="#">Third Level Item</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contactos">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseContacs" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-list"></i>
             <span class="nav-link-text">Contactos</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseContacs">
-            <li>
-              <a href="#">Pagina 1</a>
-            </li>
-          </ul>
+
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Eventos">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEvents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-calendar"></i>
             <span class="nav-link-text">Eventos</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseEvents">
-            <li>
-              <a href="#">Pagina 1</a>
-            </li>
-          </ul>
+        
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Administrador">
           <a class="nav-link" href="#">
@@ -215,7 +194,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Your Website 2017</small>
+          <small>Copyright © Lex Software S.A. de C.V. 2018</small>
         </div>
       </div>
     </footer>

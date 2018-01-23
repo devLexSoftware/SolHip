@@ -102,15 +102,18 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $cli_Solicitud = $_POST['cliSolicitud'];
     $cli_Perfil = $_POST['cliPerfil'];
 
+    //--cliNotas
+    $cli_Notas = $_POST['cliNotas'];
+
     $_SESSION['nombre'] = "otro";
 
 
     //--Insertar nuevo usuario
-    $ref = "Cli-".substr($cli_nom,0, 3).substr($cli_ape, 0, 3)."-".substr($cli_fechNac,0, 4);
+    $ref = "Cli-".substr($cli_nom,0, 3).substr($cli_ape, 0, 3)."-".substr($cli_fechNac,2, 2).substr($cli_fechNac,5, 2).substr($cli_fechNac,8, 2);
     $find = $cli_nom." ".$cli_ape;
     //$find = str_replace(' ', '', $cli_nom).str_replace(' ', '', $cli_ape);
-    $result = mysqli_query($con,"INSERT INTO Clientes(usuCreacion,ref,nombre,apellido,fechNacimiento,nss,estado,find,nivAcademico,nDependientes)
-      VALUES('".$_SESSION['nombre']."', '".$ref."', '".$cli_nom."', '".$cli_ape."','".$cli_fechNac."', '".$cli_nss."', '".$cli_estado."', '".$find."', '".$cli_NivAca."', ".$cli_NDepen." );");
+    $result = mysqli_query($con,"INSERT INTO Clientes(usuCreacion,ref,nombre,apellido,fechNacimiento,nss,estado,find,nivAcademico,nDependientes,notas)
+      VALUES('".$_SESSION['nombre']."', '".$ref."', '".$cli_nom."', '".$cli_ape."','".$cli_fechNac."', '".$cli_nss."', '".$cli_estado."', '".$find."', '".$cli_NivAca."', ".$cli_NDepen.", '".$cli_Notas."' );");
     $id = mysqli_insert_id($con);
     echo $id;
 
@@ -162,7 +165,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Para crear aviso
     $result = mysqli_query($con,"INSERT INTO Avisos(mensaje, accion,usuario)
-      VALUES('Se agrego el cliente: $find','nuevo','$_SESSION[nombre]');");
+      VALUES('Se agrego el cliente: $find','nuevo','$_SESSION[usuario]');");
 
     if ($error_message == "Exito") {
       //---Faltan campos

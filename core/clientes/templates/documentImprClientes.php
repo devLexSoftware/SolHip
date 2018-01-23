@@ -18,20 +18,26 @@
             INNER JOIN Clientes ON Clientes.id = PerfilCliente.pk_Cliente WHERE Clientes.ref = '".$ref."'");
         $elemento2 = mysqli_fetch_array($result2);
 
-        $result3 = mysqli_query($con,"SELECT nombre, apellido FROM Clientes WHERE Clientes.ref = '".$ref."'");
+        $result3 = mysqli_query($con,"SELECT nombre, apellido, find FROM Clientes WHERE Clientes.ref = '".$ref."'");
         $elemento3 = mysqli_fetch_array($result3);
 
-  } 
+  }
 
 ?>
 
 
 <page backtop="0mm" backbottom="0mm" backleft="10mm" backright="2mm">
+  <div class="" style="height:70px; background-color:#1585ab; ">
+    <img src="../../../recursos/img/sistema/logo.png" alt=""  style="width:15%;"><label for="" style="color:white; font-size:30px;">Solidez Hipotecaria</label>
+  </div>
   <h5 style="text-align:right;">Fecha: <?php echo date('d-m-Y');  ?></h5>
+
   <br>
+  <h4>Relación de documentos entregados por el cliente.</h4>
   <label for="">El cliente: <?php echo $elemento3['nombre']." ".$elemento3['apellido'];?>  entrego los documentos que a continuación se listan:</label>
   <br><br>
-  <hr style="border: solid 1px green; margin: 0 0 10mm;">
+  <hr style="border: solid 1px #999; margin: 0 0 10mm;">
+  <h5>Documentos entregados</h5>
 
   <table>
         <tr>
@@ -321,8 +327,8 @@
          /*if($elemento2['docPenCuentaORI'] == 1 or $elemento2['docPenCuentaCOP'] == 1) { echo '<td  style="width: 12mm;">Cantidad:'.$elemento2['docPenCuentaCAN'].' </td>'; }   */}?>
         </tr>
       </table>
-    <hr style="border: solid 1px violet; margin: 0 0 10mm;">
-    <h5>Falta por entregar</h5>
+    <hr style="border: solid 1px #999; margin: 0 0 10mm;">
+    <h5>Documentos pendientes</h5>
 
     <table>
           <tr>
@@ -612,5 +618,10 @@
            /*if($elemento2['docPenCuentaORI'] == 0 or $elemento2['docPenCuentaCOP'] == 0) { echo '<td  style="width: 12mm;">Cantidad:'.$elemento2['docPenCuentaCAN'].' </td>'; }   */}?>
           </tr>
         </table>
-
+<br>
+<br><br>
+<br><br>
+<p style="text-align:center;"><?php echo $elemento3[find]; ?></p>
+<br>
+<h5 style="text-align:center;">Calzada de Las Villas #859, Col. Quinta Las Villas. Irapuato, Guanajuato. C.P.36670</h5>
 </page>

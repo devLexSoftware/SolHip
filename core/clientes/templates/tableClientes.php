@@ -19,16 +19,16 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   }
   else {
   if($origen == 'bus'){
-    $filtro =" WHERE MATCH(Clientes.find) AGAINST('".$_GET['ref']."') ";
+    $filtro =" WHERE MATCH(Clientes.find) AGAINST('".$_GET['ref']."') AND PerfilCliente.estado is null";
   }
   else {
     $filtro = $_POST['filtro'];
     if ($filtro != null)
     {
-      $filtro = " WHERE ".$filtro;
+      $filtro = " WHERE ".$filtro." AND PerfilCliente.estado is null";
     }
     else {
-        $filtro = "";
+        $filtro = " WHERE PerfilCliente.estado is null";
     }
   }
     $result = mysqli_query($con,'SELECT Clientes.ref, Clientes.nombre, Clientes.apellido, Clientes.estado, PerfilCliente.banco, PerfilCliente.nombre as perfil, DatosLocalizacion.telCasa, DatosLocalizacion.telMovil, DatosLocalizacion.email FROM Clientes
@@ -61,7 +61,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               <button type="button" class="btn btn-info" style="padding:0 0 0 0; width:80px;" data-toggle="modal" data-target="#exampleModal'.$count_modal.'">Info</button>
           </td>
           <td>
-              <button type="button" class="btn btn-outline-info" style="padding:0 0 0 0; width:80px; " data-toggle="modal" data-target="#exampleModal2'.$count_modal.'">Acciones</button>            
+              <button type="button" class="btn btn-outline-info" style="padding:0 0 0 0; width:80px; " data-toggle="modal" data-target="#exampleModal2'.$count_modal.'">Acciones</button>
           </td>
 
           <div class="modal fade" id="exampleModal'.$count_modal.'">
@@ -104,23 +104,26 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                 </div>
                 <div class="modal-body row">
                   <div class="form-group col-md-3">
-                    <p class="sMargen"><b>Editar</b></p>
-                    <a style="text-decoration: none;" href="../templates/index.php?p=cu&ref='.$elemento["ref"].'" class="fa fa-address-book fa-3x" style="text-align:center;"></a>
+                    <p class="sMargen"><b>Información</b></p>
+                    <a style="text-decoration: none;" href="../templates/index.php?p=cu&ref='.$elemento["ref"].'" class="" style="text-align:right;"> Editar</a>
                   </div>
                   <div class="form-group col-md-3">
-                    <p class="sMargen"><b>Registrar</b></p>
-                    <a style="text-decoration: none;" href="../templates/index.php?p=cs&ref='.$elemento["ref"].'" class="fa fa-folder-open fa-3x" style="text-align:center;"></a>
-                  </div>
-                  <div class="form-group col-md-3">
-                    <p class="sMargen"><b>Imprimir</b></p>
-                    <a style="text-decoration: none;" href="../templates/index.php?p=imba&ref='.$elemento["ref"].'" class="fa fa-bank fa-3x" style="text-align:center;"></a>
+                    <p class="sMargen"><b>Archivos</b></p>
+                    <a style="text-decoration: none;" href="../templates/index.php?p=cs&ref='.$elemento["ref"].'" class="" style="text-align:center;"> Agregar</a>
                   </div>
                   ';
+                  if ($elemento['banco'] == "Afirme" || $elemento['banco'] == "Banorte" || $elemento['banco'] == "BanRegio" || $elemento['banco'] == "HSBC" || $elemento['banco'] == "Scotiabank" ) {
+                    echo '
+                    <div class="form-group col-md-4">
+                      <p class="sMargen"><b>Autorización</b></p>
+                      <a style="text-decoration: none;" href="../templates/index.php?p=imba&ref='.$elemento["ref"].'" class="" style="text-align:center;">Imprimir</a>
+                    </div>';
+                  }
                   if ($elemento['banco'] == "HSBC") {
                     echo '
-                    <div class="form-group col-md-3">
-                    <p class="sMargen">-</p>
-                      <a style="text-decoration: none;" href="../templates/index.php?p=imbr&ref='.$elemento["ref"].'" class="fa fa-pencil fa-3x" style="text-align:center;"></a>
+                    <div class="form-group col-md-2">
+                    <p class="sMargen">Búro Cre</p>
+                      <a style="text-decoration: none;" href="../templates/index.php?p=imbr&ref='.$elemento["ref"].'" class="" style="text-align:center;">Imprimir</a>
                     </div>
                     ';
                   }

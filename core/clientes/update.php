@@ -12,7 +12,7 @@
     }
     else {
       $ref = $_GET['ref'];
-      $result = mysqli_query($con,"SELECT Clientes.nombre, Clientes.find, Clientes.apellido, Clientes.nss, Clientes.rfc, Clientes.fechNacimiento, Clientes.nivAcademico, Clientes.nDependientes,
+      $result = mysqli_query($con,"SELECT Clientes.nombre, Clientes.find, Clientes.apellido, Clientes.nss, Clientes.rfc, Clientes.fechNacimiento, Clientes.nivAcademico, Clientes.nDependientes, Clientes.notas,
           DatosLocalizacion.calle, DatosLocalizacion.colonia, DatosLocalizacion.numInt, DatosLocalizacion.numExt, DatosLocalizacion.cp, DatosLocalizacion.antVivienda, DatosLocalizacion.tipVivienda,
           DatosLocalizacion.telCasa, DatosLocalizacion.telMovil, DatosLocalizacion.email
           FROM Clientes INNER JOIN DatosLocalizacion ON Clientes.id = DatosLocalizacion.pk_Cliente WHERE ref = '".$ref."'");
@@ -311,8 +311,17 @@
     <div class="form-group row">
       <div class="form-group col-md-4">
         <p class="sMargen">Banco</p>
-        <input class="form-control" type="text" name="cliBanco" value="<?php echo $elemento3['banco']; ?>" placeholder="Banco">
-        <span id="error" class="invalid-feedback"></span>
+        <select class="form-control" name="cliBanco" value="" placeholder="Banco">
+          <option selected="true" value="<?php echo $elemento3['banco']; ?>"><?php echo $elemento3['banco']; ?></option>
+          <option value="Cofinavit">Cofinavit</option>
+          <option value=">Santander persona moral">Santander persona moral</option>
+          <option value="Santander">Santander</option>
+          <option value="ScotianBank">ScotianBank</option>
+          <option value="Afirme">Afirme</option>
+          <option value="Banorte">Banorte</option>
+          <option value="BanRegio">BanRegio</option>
+          <option value="Hsbc">Hsbc</option>
+        </select>
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Monto de crédito</p>
@@ -326,16 +335,28 @@
       </div>
       <div class="form-group col-md-4">
         <p class="sMargen">Perfil</p>
-        <input class="form-control" type="text" name="cliPerfil" value="<?php echo $elemento3['nombre']; ?>" placeholder="Perfil">
-        <span id="error" class="invalid-feedback"></span>
+        <select class="form-control" name="cliPerfil" value="<?php echo $elemento3['nombre']; ?>" placeholder="Perfil">
+          <option selected="true" value="<?php echo $elemento3['nombre']; ?>"><?php echo $elemento3['nombre']; ?></option>
+          <option value="Hipotecario en Confinanciamiento">Hipotecario en Confinanciamiento</option>
+          <option value="Hipotecario Persona Fisica con Actividad Independiente">Hipotecario Persona Fisica con Actividad Independiente</option>
+          <option value="Hipotecario Salario Fijo">Hipotecario Salario Fijo</option>
+          <option value="COFINAVIT">COFINAVIT</option>
+          <option value="Hipotecario Persona Fisica con Actividad Empresarial">Hipotecario Persona Fisica con Actividad Empresarial</option>
+          <option value="Hipotecario Pensión">Hipotecario Pensión</option>
+        </select>
       </div>
     </div>
     <br>
 
     <div class="form-group row">
-      <div class="form-group col-md-10"></div>
-      <div class="form-group col-md-2">
-        <button class="btn btn-success" type="submit" name="btnSiguiente">Guardar</button>
+      <div class="form-group col-md-10">
+        <p class="sMargen">Notas del cliente</p>
+        <textarea class="form-control" name="cliNotas" rows="1" cols="50"><?php echo $elemento[notas]; ?></textarea>
+      </div>
+      <div class="form-group col-md-1"></div>
+      <div class="form-group col-md-1">
+        <p class="sMargen"> Guardar</p>
+        <button class="btn btn-success" type="submit" name="btnSiguiente">Cliente</button>
       </div>
     </div>
 

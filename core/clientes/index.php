@@ -4,7 +4,7 @@
   <!-- Breadcrumbs-->
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a href="#">Inicio</a>
+      <a href="index.php?p=in">Inicio</a>
     </li>
     <li class="breadcrumb-item active">Clientes</li>
   </ol>
@@ -29,7 +29,6 @@
       </div>
     </div>
 
-    <br>
     <div class="form-group row ">
 
       <div class="form-group col-md-2">
@@ -284,8 +283,18 @@
     <div class="form-group row">
       <div class="form-group col-md-4">
         <p class="sMargen">Banco</p>
-        <input class="form-control" type="text" name="cliBanco" value="" placeholder="Banco">
-        <span id="error" class="invalid-feedback"></span>
+        <select class="form-control" name="cliBanco" value="" placeholder="Banco">
+          <option selected="true" disabled="disabled">Banco</option>
+          <option value="Cofinavit">Cofinavit</option>
+          <option value=">Santander persona moral">Santander persona moral</option>
+          <option value="Santander">Santander</option>
+          <option value="ScotianBank">ScotianBank</option>
+          <option value="Afirme">Afirme</option>
+          <option value="Banorte">Banorte</option>
+          <option value="BanRegio">BanRegio</option>
+          <option value="Hsbc">Hsbc</option>
+        </select>
+
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Monto de crédito</p>
@@ -314,9 +323,14 @@
     <br>
 
     <div class="form-group row">
-      <div class="form-group col-md-10"></div>
-      <div class="form-group col-md-2">
-        <button class="btn btn-success" type="submit" name="btnSiguiente">Avanzar</button>
+      <div class="form-group col-md-10">
+        <p class="sMargen">Notas del cliente</p>
+        <textarea class="form-control" name="cliNotas" rows="1" cols="50"></textarea>
+      </div>
+      <div class="form-group col-md-1"></div>
+      <div class="form-group col-md-1">
+        <p class="sMargen"> Guardar</p>
+        <button class="btn btn-success" type="submit" name="btnSiguiente">Cliente</button>
       </div>
     </div>
 

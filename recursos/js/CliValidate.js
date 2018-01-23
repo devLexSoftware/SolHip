@@ -20,19 +20,19 @@ $('document').ready(function(){
       cliNombre: {
         required: true,
         validname: true,
-        minlength: 4
+        minlength: 1
       },
       cliApellido: {
         required: true,
         validname: true,
-        minlength: 4
+        minlength: 1
       },
       cliNss: {
-        minlength: 10,
-        maxlength: 10
+        minlength: 9,
+        maxlength: 12
       },
       cliRfc: {
-        minlength: 13,
+        minlength: 10,
         maxlength: 13
       },
       cliNivAcademico: {

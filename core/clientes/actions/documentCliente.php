@@ -11,10 +11,12 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   else {
 
     $ref = $_GET['ref'];
+    //--cliNotas
+    $cli_Notas = $_POST['cliNotas'];
     $completo = 0;
 
     //--Para obtener el id del documento y el nombre del perfil
-    $result = mysqli_query($con,"SELECT DocumentosCliente.id, PerfilCliente.nombre FROM DocumentosCliente
+    $result = mysqli_query($con,"SELECT DocumentosCliente.id, DocumentosCliente.notas, PerfilCliente.nombre FROM DocumentosCliente
       INNER JOIN PerfilCliente ON PerfilCliente.id = DocumentosCliente.pk_PerfilCliente
       INNER JOIN Clientes ON  PerfilCliente.pk_Cliente = Clientes.id WHERE Clientes.ref = '".$ref."'");
     $elemento = mysqli_fetch_array($result);
@@ -77,7 +79,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                 docActMatrimonioORI = $docActMatrimonioORI, docActMatrimonioCOP = $docActMatrimonioCOP, docActMatrimonioCAN = $docActMatrimonioCAN, docIdentificacionORI = $docIdentificacionORI, docIdentificacionCOP = $docIdentificacionCOP,
                 docRfcORI = $docRfcORI, docRfcCOP = $docRfcCOP, docCurpORI = $docCurpORI, docCurpCOP = $docCurpCOP, docComDomicilioORI = $docComDomicilioORI, docComDomicilioCOP = $docComDomicilioCOP,
                 docPatronalORI = $docPatronalORI, docPatronalCOP = $docPatronalCOP, docNominaORI = $docNominaORI, docNominaCOP = $docNominaCOP, docNominaCAN = $docNominaCAN, docEstCuentaORI = $docEstCuentaORI, docEstCuentaCOP = $docEstCuentaCOP, docEstCuentaCAN = $docEstCuentaCAN,
-                estatus = '".$completo."' WHERE id = ".$elemento['id']."");
+                estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
             }
         break;
 
@@ -130,7 +132,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               docActMatrimonioORI = $docActMatrimonioORI, docActMatrimonioCOP = $docActMatrimonioCOP, docActMatrimonioCAN = $docActMatrimonioCAN, docIdentificacionORI = $docIdentificacionORI, docIdentificacionCOP = $docIdentificacionCOP,
               docRfcORI = $docRfcORI, docRfcCOP = $docRfcCOP, docCurpORI = $docCurpORI, docCurpCOP = $docCurpCOP, docComDomicilioORI = $docComDomicilioORI, docComDomicilioCOP = $docComDomicilioCOP,
               docNominaORI = $docNominaORI, docNominaCOP = $docNominaCOP, docNominaCAN = $docNominaCAN,
-              estatus = '".$completo."' WHERE id = ".$elemento['id']."");
+              estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
           }
       break;
 
@@ -221,7 +223,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               docConTallerORI = $docConTallerORI, docConTallerCOP = $docConTallerCOP, solCreInfonavitORI = $solCreInfonavitORI, solCreInfonavitCOP = $solCreInfonavitCOP,
               docInsIrrevocableORI = $docInsIrrevocableORI, docInsIrrevocableCOP = $docInsIrrevocableCOP, docAutBuroCreditoORI = $docAutBuroCreditoORI, docAutBuroCreditoCOP = $docAutBuroCreditoCOP,
               docManifiestoORI = $docManifiestoORI, docManifiestoCOP = $docManifiestoCOP,
-              estatus = '".$completo."' WHERE id = ".$elemento['id']."");
+              estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
           }
       break;
 
@@ -284,7 +286,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               docRfcORI = $docRfcORI, docRfcCOP = $docRfcCOP, docCurpORI = $docCurpORI, docCurpCOP = $docCurpCOP, docComDomicilioORI = $docComDomicilioORI, docComDomicilioCOP = $docComDomicilioCOP,
               docNominaORI = $docNominaORI, docNominaCOP = $docNominaCOP, docNominaCAN = $docNominaCAN, docDecAnualORI = $docDecAnualORI, docDecAnualCOP = $docDecAnualCOP,
               docDecParcialORI = $docDecParcialORI, docDecParcialCOP = $docDecParcialCOP, solAltSecretariaORI = $solAltSecretariaORI, solAltSecretariaCOP = $solAltSecretariaCOP,
-              estatus = '".$completo."' WHERE id = ".$elemento['id']."");
+              estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
           }
       break;
 
@@ -334,7 +336,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               docIdentificacionORI = $docIdentificacionORI, docIdentificacionCOP = $docIdentificacionCOP, docComDomicilioORI = $docComDomicilioORI, docComDomicilioCOP = $docComDomicilioCOP,
               docConvenioORI = $docConvenioORI, docConvenioCOP = $docConvenioCOP, docPenMensualORI = $docPenMensualORI, docPenMensualCOP = $docPenMensualCOP, docPenMensualCAN = $docPenMensualCAN,
               docPenCuentaORI = $docPenCuentaORI, docPenCuentaCOP = $docPenCuentaCOP, docPenCuentaCAN = $docPenCuentaCAN,
-              estatus = '".$completo."' WHERE id = ".$elemento['id']."");
+              estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
           }
       break;
       default:
@@ -346,7 +348,30 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $result = mysqli_query($con,"SELECT find FROM Clientes WHERE ref = '$ref';");
     $elemento = mysqli_fetch_array($result);
     $result1 = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion,usuario)
-      VALUES('Se recibio nuevos documentos de cliente: $elemento[find]','actualizado','$_SESSION[nombre]');");
+      VALUES('Se recibio nuevos documentos de cliente: $elemento[find]','actualizado','$_SESSION[usuario]');");
+
+    //--Para guardar Documentos
+    $cli_NDocumentos = $_POST['cliNDocumentos'];
+    $count = 1;
+
+    //--Creacion de carpetas
+    $target_path = "../../../file/clients/".$ref;
+    if (!file_exists($target_path))
+      mkdir($target_path, 0777, true);
+    $target_path = $target_path."/";
+
+    while ($count <= $cli_NDocumentos) {
+      $nombre = 'cliDocument'.$count;
+      $target = $target_path . basename( $_FILES[$nombre]['name']);
+      move_uploaded_file($_FILES[$nombre]['tmp_name'], $target);
+    /*  if(move_uploaded_file($_FILES[$nombre]['tmp_name'], $target_path)) {
+        echo "El archivo ". basename( $_FILES[$nombre]['name']). " ha sido subido";
+      }
+      else{
+        echo "Ha ocurrido un error, trate de nuevo!";
+      }*/
+      $count++;
+    }
 
     //--Para imprimir
     if(array_key_exists('btnImprimir',$_POST)){

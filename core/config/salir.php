@@ -5,5 +5,5 @@
     $result = mysqli_query($con,"UPDATE RegistroUsuarios SET estatus = 0 WHERE id = ".$_SESSION['pk']." ");
     session_start();
     session_destroy();
-    header('location: ../login/index.php');
+    header('location: ../../index.php');
 ?>

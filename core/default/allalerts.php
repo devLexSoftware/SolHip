@@ -11,7 +11,7 @@
       echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
     else {
-          $result = mysqli_query($con,"SELECT hora, mensaje, accion FROM SolHip.Avisos ORDER BY hora desc;");
+          $result = mysqli_query($con,"SELECT hora, mensaje, accion, usuario FROM SolHip.Avisos ORDER BY hora desc;");
     }
 ?>
 
@@ -30,7 +30,7 @@
                 if($elemento['estado'] == "Sin completar"){ echo 'Tiene información sin completar. ';}
                 if($elemento['estatus'] == "Sin completar"){ echo 'Tiene documentos pendientes por entregar.';}
               echo '
-              <div class="text-muted smaller">Día y hora: '.$elemento[hora].'</div>
+              <div class="text-muted smaller">Día y hora: '.$elemento[hora].' por el usuario: <strong>'.$elemento[usuario].'</strong></div>
             </div>
           </div>
         </a>';

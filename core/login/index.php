@@ -1,3 +1,64 @@
+<?php
+define('DB_SERVER','localhost');
+define('DB_NAME','SolHip');
+define('DB_USER','root');
+define('DB_PASS','q1w2e3');
+
+session_start();
+$message="";
+$captcha = true;
+
+$usuario = $_POST[user1];
+$password = $_POST[pass1];
+$_SESSION['valida'] = 'false';
+
+if(count($_POST)>0 && isset($_POST["captcha_code"]) && $_POST["captcha_code"]!=$_SESSION["captcha_code"]) {
+  $captcha = false;
+  $message = "Introduzca el código de Captcha correcto";
+}
+
+
+$con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+if (mysqli_connect_errno()) {
+    echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+else {
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $result = mysqli_query($con,"SELECT count(ip) AS failed_login_attempt FROM failed_login WHERE ip = '$ip' AND fecha BETWEEN DATE_SUB( NOW() , INTERVAL 1 DAY ) AND NOW()");
+  $row = mysqli_fetch_array($result);
+  $failed_login_attempt = $row['failed_login_attempt'];
+
+
+  if(count($_POST)>0 && $captcha == true) {
+    $result = mysqli_query($con,"SELECT * FROM Usuarios WHERE usuario ='".$usuario."'");
+    if($row = mysqli_fetch_array($result)){
+      if($row['pass'] == $password){
+        $id = $row['id'];
+        session_start();
+        $_SESSION['valida'] = "true";
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['nombre'] = $row['nombre'];
+        $_SESSION['tipo'] = $row['tipo'];
+        $_SESSION['foto'] = $row['img'];
+        $_SESSION['uacceso'] = time();
+        $result = mysqli_query($con,"INSERT INTO RegistroUsuarios(pk_Usuarios,usuario, estatus) values (".$id.",'".$_SESSION['usuario']."', 1)");
+        $_SESSION['pk'] = mysqli_insert_id($con);
+        $result = mysqli_query($con,"DELETE FROM failed_login WHERE ip = '$ip'");
+          header("location:../core/templates/index.php?p=in");
+    } } else {
+      $message = "¡Usuario o contraseña invalido!";
+      if ($failed_login_attempt < 3) {
+          $result = mysqli_query($con,"INSERT INTO failed_login (ip,fecha) VALUES ('$ip', NOW())");
+      } else {
+        $message = "¡Usuario o contraseña invalido!";
+      }
+    }
+  }
+}
+
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" class="full-height">
 
@@ -11,75 +72,29 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../../recursos/css/compiled.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../recursos/css/login.css">
 
-   <style>
-
-          input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
-
-        .intro-2 {
-            background: url("../../recursos/img/sistema/nature.jpg")no-repeat center center;
-            background-size: cover;
-        }
-        .top-nav-collapse {
-            background-color: #3f51b5 !important;
-        }
-        .navbar:not(.top-nav-collapse) {
-            background: transparent !important;
-        }
-        @media (max-width: 768px) {
-            .navbar:not(.top-nav-collapse) {
-                background: #3f51b5 !important;
-            }
-        }
-        .hm-gradient .full-bg-img {
-            background: -webkit-linear-gradient(45deg, rgba(83, 125, 210, 0.4), rgba(178, 30, 123, 0.4) 100%);
-            background: -webkit-gradient(linear, 45deg, from(rgba(29, 236, 197, 0.4)), to(rgba(96, 0, 136, 0.4)));
-            background: linear-gradient(to 45deg, rgba(29, 236, 197, 0.4), rgba(96, 0, 136, 0.4) 100%);
-        }
-        .card {
-            background-color: rgba(229, 228, 255, 0.2);
-        }
-
-         .md-form .prefix {
-            font-size: 1.5rem;
-            margin-top: 1rem;
-        }
-        .md-form label {
-            color: #ffffff;
-        }
-        h6 {
-            line-height: 1.7;
-        }
-        @media (max-width: 740px) {
-            .full-height,
-            .full-height body,
-            .full-height header,
-            .full-height header .view {
-                height: 1040px;
-            }
-        }
-
-    </style>
-</head>
+  </head>
 
 <body>
 
     <!--Main Navigation-->
     <header>
 
-
-
         <!--Intro Section-->
         <section class="view intro-2 hm-gradient">
             <div class="full-bg-img">
                 <div class="container flex-center">
+                  <div class="">
+                  </div>
                     <div class="d-flex align-items-center content-height">
                         <div class="row flex-center pt-1 mt-1">
                             <div class="col-md-6 text-center text-md-left mb-1">
                                 <div class="white-text">
-                                    <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s">Solidez Hipotecaria</h1>
+                                    <h1 class="h1-responsive font-bold wow fadeInLeft" data-wow-delay="0.3s"></h1>
                                     <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                                    <div class="" style="width:1000px;">
+                                    <div class="message  wow fadeInLeft" style="width:1000px;" >
+                                      <h4 style="color:#ffedae;"><?php if($message!="") { echo $message; } ?></h4>
 
                                     </div>
                                     <br>
@@ -96,12 +111,12 @@
                                             <hr class="hr-light">
                                         </div>
 
-                                        <form class="form" action="actions/loginS.php" method="post" autocomplete="off">
+                                        <form class="form" action="" method="post" autocomplete="off">
                                           <!--Body-->
                                           <div class="md-form">
                                               <i class="fa fa-user prefix white-text active"></i>
                                               <input type="text" id="form3" class="form-control"  autocomplete="off" name="user1">
-                                              <label for="form3" class="active">Nombre de usuario</label>
+                                              <label for="form3" class="active" >Nombre de usuario</label>
                                           </div>
 
                                           <div class="md-form">
@@ -110,8 +125,22 @@
                                               <label for="form4" class="active">Password</label>
                                           </div>
 
-                                          <div class="text-center">
-                                              <button class="btn btn-indigo" type="submit">Iniciar</button>
+                                            <?php if (isset($failed_login_attempt) && $failed_login_attempt >= 3) { ?>
+
+                                              <div class="md-form">
+                                                <i class="fa fa-ban prefix white-text active"></i>
+                                                <input type="text" id="form4" class="form-control" autocomplete="off" name="captcha_code">
+                                                <label for="form4" class="active">Captcha</label>
+
+
+                                                <?php } ?>
+                                                <div class="" style="text-align:center;">
+                                                    <?php if (isset($failed_login_attempt) && $failed_login_attempt >= 3) { ?>
+                                                      <img src="captcha.php" style="position:relative; left:38%;"/>
+                                                    <?php } ?>
+                                                <button class="btn btn-indigo" type="submit">Iniciar</button>
+                                                </div>
+
                                           </div>
                                         </form>
 

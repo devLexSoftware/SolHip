@@ -37,6 +37,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
        empty($_POST['cliAntiguedad']) ||
        empty($_POST['cliTipo']) ||
 
+
        //Datos de localizacion
        empty($_POST['cliTelCasa']) ||
        empty($_POST['cliTelMovil']) ||
@@ -100,9 +101,12 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     $cli_Solicitud = $_POST['cliSolicitud'];
     $cli_Perfil = $_POST['cliPerfil'];
 
+    //--cliNotas
+    $cli_Notas = $_POST['cliNotas'];
+
     $_SESSION['nombre'] = "otro";
     $ref = $_GET["ref"];
-    $ref2 = "Cli-".substr($cli_nom,0, 3).substr($cli_ape, 0, 3)."-".substr($cli_fechNac,0, 4);
+    $ref2 = "Cli-".substr($cli_nom,0, 3).substr($cli_ape, 0, 3)."-".substr($cli_fechNac,2, 2).substr($cli_fechNac,5, 2).substr($cli_fechNac,8, 2);
     $find = $cli_nom." ".$cli_ape;
     //$find = str_replace(' ', '', $cli_nom).str_replace(' ', '', $cli_ape);
 
@@ -132,7 +136,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Actualizar clientes
     $result = mysqli_query($con,"UPDATE Clientes SET ref = '$ref2', nombre = '$cli_nom', apellido = '$cli_ape', fechNacimiento = '$cli_fechNac',
-      nss = '$cli_nss', estado = '$cli_estado', find = '$find', nivAcademico = '$cli_NivAca', nDependientes = '$cli_NDepen' WHERE ref = '$ref';  ");
+      nss = '$cli_nss', estado = '$cli_estado', find = '$find', nivAcademico = '$cli_NivAca', nDependientes = '$cli_NDepen', notas = '$cli_Notas' WHERE ref = '$ref';  ");
 
     //--Actualizar direccion del cliente
     $result = mysqli_query($con,"UPDATE DatosLocalizacion SET calle = '$cli_cal', numInt = '$cli_NInt', numExt = '$cli_NExt', colonia = '$cli_col',
@@ -185,7 +189,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
     //--Para crear aviso
     $result = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion,usuario)
-      VALUES('Se actualizo informacion del cliente: $find','actualizado','$_SESSION[nombre]');");
+      VALUES('Se actualizo informacion del cliente: $find','actualizado','$_SESSION[usuario]');");
 
     if ($error_message == "Exito") {
       //----Formulario completado

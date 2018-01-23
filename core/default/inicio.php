@@ -37,7 +37,7 @@
     <div class="col-xl-6 col-sm-6 mb-6" id="divallmessages">
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-envelope-o"></i> Mensajes</div>
+          <i class="fa fa-envelope-o" style="color:#007bff;"></i> Mensajes</div>
         <div class="list-group list-group-flush small pre-scrollable" style="max-height:300px;">
           <?php
           $count=0;
@@ -71,7 +71,7 @@
     <div class="col-xl-6 col-sm-6 mb-6" id="divallalerts">
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-bell-o"></i> Alertas</div>
+          <i class="fa fa-bell-o" style="color:#ffc107 ;"></i> Alertas</div>
         <div class="list-group list-group-flush small pre-scrollable" style="max-height:300px;">
           <?php
           $count=0;

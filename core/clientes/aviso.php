@@ -41,8 +41,8 @@
   <div class="form-group row ">
     <div class="form-group col-md-6">
       <p class="sMargen">Se quedara en estado pendiente hasta completar su información.</p>
-      <h6>Ver documentos</h6>
-      <a href="<?php echo '../templates/index.php?p=cs&ref='.$elemento["ref"].''  ?>">Ver Documentos</a>
+      <h4>Documentos</h4>
+      <a href="../templates/index.php?p=csA&ref=<?php echo $ref;  ?>">Ver Documentos</a>
     </div>
   </div>
 

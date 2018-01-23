@@ -33,7 +33,7 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
       //--Para crear aviso
       $result = mysqli_query($con,"INSERT INTO Avisos(mensaje,accion,usuario)
-        VALUES('Se dio de baja el usuario: $usuario','baja','$_SESSION[nombre]');");
+        VALUES('Se dio de baja el usuario: $usuario','baja','$_SESSION[usuario]');");
 
       $result = mysqli_query($con,"SET FOREIGN_KEY_CHECKS=1;");
   }
