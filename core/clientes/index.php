@@ -283,7 +283,7 @@
     <div class="form-group row">
       <div class="form-group col-md-4">
         <p class="sMargen">Banco</p>
-        <select class="form-control" name="cliBanco" value="" placeholder="Banco">
+        <select class="form-control" name="cliBanco" value="" placeholder="Banco" onchange="CBanco(this.value)">
           <option selected="true" disabled="disabled">Banco</option>
           <option value="Cofinavit">Cofinavit</option>
           <option value=">Santander persona moral">Santander persona moral</option>
@@ -294,7 +294,6 @@
           <option value="BanRegio">BanRegio</option>
           <option value="Hsbc">Hsbc</option>
         </select>
-
       </div>
       <div class="form-group col-md-2">
         <p class="sMargen">Monto de crédito</p>
@@ -306,7 +305,7 @@
         <input class="form-control" type="number" name="cliSolicitud" value="" placeholder="Solicitud">
         <span id="error" class="invalid-feedback"></span>
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-4" id="divPerfil">
         <p class="sMargen">Perfil</p>
         <select class="form-control" name="cliPerfil" value="" placeholder="Perfil">
           <option selected="true" disabled="disabled">Perfil</option>

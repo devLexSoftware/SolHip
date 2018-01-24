@@ -631,6 +631,86 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
             ';
             break;
 
+          case 'Persona Moral':
+          echo '
+          <table class="table table-striped table-hover" table-layout: fixed;>
+            <thead>
+              <tr class="info">
+                <th style="width: 80%;">Documento</th>
+                <th style="text-align:left; width: 10%;">Estatus</th>
+                <th style="width: 10%;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="width: 80%;">Solicitud 097.</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="sol97ORI" ';if ($elemento2['sol97ORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="sol97COP" ';if ($elemento2['sol97COP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Acta de Nacimiento original (2).</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docActNacimientoORI" ';if ($elemento2['docActNacimientoORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docActNacimientoCOP" ';if ($elemento2['docActNacimientoCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;">Cantidad<input type="number" class="form-control" name="docActNacimientoCAN" placeholder="0" value="';if ($elemento2['docActNacimientoORI'] != 0 or $elemento2['docActNacimientoCOP'] != 0) echo $elemento2['docActNacimientoCAN']; echo'"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Acta de Matrimonio original (2 si aplica).</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docActMatrimonioORI" ';if ($elemento2['docActMatrimonioORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docActMatrimonioCOP" ';if ($elemento2['docActMatrimonioCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;">Cantidad<input type="number" class="form-control" name="docActMatrimonioCAN" placeholder="0" value="';if ($elemento2['docActMatrimonioORI'] != 0 or $elemento2['docActMatrimonioCOP'] != 0) echo $elemento2['docActMatrimonioCAN']; echo'"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Identificación original.</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docIdentificacionORI" ';if ($elemento2['docIdentificacionORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docIdentificacionCOP" ';if ($elemento2['docIdentificacionCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Comprobante de domicilio original.</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docComDomicilioORI" ';if ($elemento2['docComDomicilioORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docComDomicilioCOP" ';if ($elemento2['docComDomicilioCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Constancia de situación fiscal.</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docSitFiscalORI" ';if ($elemento2['docSitFiscalORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docSitFiscalCOP" ';if ($elemento2['docSitFiscalCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Últimos 6 estados de cuenta.</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docEstCuentaORI" ';if ($elemento2['docEstCuentaORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docEstCuentaCOP" ';if ($elemento2['docEstCuentaCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;">Cantidad<input type="number" class="form-control" name="docEstCuentaCAN" placeholder="0" value="';if ($elemento2['docEstCuentaORI'] != 0 or $elemento2['docEstCuentaCOP'] != 0) echo $elemento2['docEstCuentaCAN']; echo'"></td>
+              </tr>
+              <tr>
+                <td style="width: 80%;">Acta constitutiva.</td>
+                <td style="width: 10%;">
+                  <input type="checkbox" class="form-check-input" name="docActConstitutivaORI" ';if ($elemento2['docActConstitutivaORI'] != 0) echo 'checked'; echo'>Original <br>
+                  <input type="checkbox" class="form-check-input" name="docActConstitutivaCOP" ';if ($elemento2['docActConstitutivaCOP'] != 0) echo 'checked'; echo'>Copia
+                </td>
+                <td style="width: 10%;"></td>
+              </tr>
+            </tbody>
+          </table>
+            ';
+            break;
+
 
       default:
         # code...

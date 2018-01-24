@@ -326,10 +326,36 @@
            if($elemento2['docPenCuentaCOP'] == 1) { echo '<td  style="width: 12mm;">Copia</td>'; }
          /*if($elemento2['docPenCuentaORI'] == 1 or $elemento2['docPenCuentaCOP'] == 1) { echo '<td  style="width: 12mm;">Cantidad:'.$elemento2['docPenCuentaCAN'].' </td>'; }   */}?>
         </tr>
+        <tr>
+          <?php if($elemento2['sol97ORI'] != null){
+           if($elemento2['sol97ORI'] == 1 or $elemento2['sol97COP'] == 1) { echo '<td  style="width: 125mm;">'.$count++.'.- Solicitud 97.</td>'; }
+           if($elemento2['sol97ORI'] == 1) { echo '<td  style="width: 12mm;">Original</td>'; }
+           if($elemento2['sol97ORI'] == 1 and $elemento2['sol97COP'] == 1) { echo '<td  style="width: 2mm;">-</td>'; }
+           if($elemento2['sol97COP'] == 1) { echo '<td  style="width: 12mm;">Copia</td>'; }
+         /*if($elemento2['docPenCuentaORI'] == 1 or $elemento2['docPenCuentaCOP'] == 1) { echo '<td  style="width: 12mm;">Cantidad:'.$elemento2['docPenCuentaCAN'].' </td>'; }   */}?>
+        </tr>
+        <tr>
+          <?php if($elemento2['docSitFiscalORI'] != null){
+           if($elemento2['docSitFiscalORI'] == 1 or $elemento2['sol97COP'] == 1) { echo '<td  style="width: 125mm;">'.$count++.'.- Constancia de situación Fiscal.</td>'; }
+           if($elemento2['docSitFiscalORI'] == 1) { echo '<td  style="width: 12mm;">Original</td>'; }
+           if($elemento2['docSitFiscalORI'] == 1 and $elemento2['docSitFiscalCOP'] == 1) { echo '<td  style="width: 2mm;">-</td>'; }
+           if($elemento2['docSitFiscalCOP'] == 1) { echo '<td  style="width: 12mm;">Copia</td>'; }
+         /*if($elemento2['docPenCuentaORI'] == 1 or $elemento2['docPenCuentaCOP'] == 1) { echo '<td  style="width: 12mm;">Cantidad:'.$elemento2['docPenCuentaCAN'].' </td>'; }   */}?>
+        </tr>
+        <tr>
+          <?php if($elemento2['docActConstitutivaORI'] != null){
+           if($elemento2['docActConstitutivaORI'] == 1 or $elemento2['sol97COP'] == 1) { echo '<td  style="width: 125mm;">'.$count++.'.- Acta constitutiva de la empresa.</td>'; }
+           if($elemento2['docActConstitutivaORI'] == 1) { echo '<td  style="width: 12mm;">Original</td>'; }
+           if($elemento2['docActConstitutivaORI'] == 1 and $elemento2['docActConstitutivaCOP'] == 1) { echo '<td  style="width: 2mm;">-</td>'; }
+           if($elemento2['docActConstitutivaCOP'] == 1) { echo '<td  style="width: 12mm;">Copia</td>'; }
+         /*if($elemento2['docPenCuentaORI'] == 1 or $elemento2['docPenCuentaCOP'] == 1) { echo '<td  style="width: 12mm;">Cantidad:'.$elemento2['docPenCuentaCAN'].' </td>'; }   */}?>
+        </tr>
       </table>
     <hr style="border: solid 1px #999; margin: 0 0 10mm;">
-    <h5>Documentos pendientes</h5>
 
+
+
+    <h5>Documentos pendientes</h5>
     <table>
           <tr>
              <?php if($elemento2['solCreBancarioORI'] != null){

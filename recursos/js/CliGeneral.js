@@ -1,8 +1,40 @@
+function CBanco(banco){
+  var div = "";
+  if (banco == "Santander" || banco == "BanRegio" || banco == "Afirme") {
+    div = '  <p class="sMargen">Perfil</p>' +
+      '<select class="form-control" name="cliPerfil" value="" placeholder="Perfil">' +
+      '<option selected="true" disabled="disabled">Perfil</option>' +
+        '<option value="Persona Moral">Persona Moral</option>' +        
+        '<option value="Hipotecario en Confinanciamiento">Hipotecario en Confinanciamiento</option>' +
+        '<option value="Hipotecario Persona Fisica con Actividad Independiente">Hipotecario Persona Fisica con Actividad Independiente</option>' +
+        '<option value="Hipotecario Salario Fijo">Hipotecario Salario Fijo</option>' +
+        '<option value="COFINAVIT">COFINAVIT</option>' +
+        '<option value="Hipotecario Persona Fisica con Actividad Empresarial">Hipotecario Persona Fisica con Actividad Empresarial</option>' +
+        '<option value="Hipotecario Pensión">Hipotecario Pensión</option>' +
+        '<option value="Hipotecario Pensión">Hipotecario Pensión</option>' +
+      '</select>' +
+      '<span id="error" class="invalid-feedback"></span>';
+  }
+  else {
+    div = '  <p class="sMargen">Perfil</p>' +
+      '<select class="form-control" name="cliPerfil" value="" placeholder="Perfil">' +
+        '<option selected="true" disabled="disabled">Perfil</option>' +
+        '<option value="Hipotecario en Confinanciamiento">Hipotecario en Confinanciamiento</option>' +
+        '<option value="Hipotecario Persona Fisica con Actividad Independiente">Hipotecario Persona Fisica con Actividad Independiente</option>' +
+        '<option value="Hipotecario Salario Fijo">Hipotecario Salario Fijo</option>' +
+        '<option value="COFINAVIT">COFINAVIT</option>' +
+        '<option value="Hipotecario Persona Fisica con Actividad Empresarial">Hipotecario Persona Fisica con Actividad Empresarial</option>' +
+        '<option value="Hipotecario Pensión">Hipotecario Pensión</option>' +
+        '<option value="Hipotecario Pensión">Hipotecario Pensión</option>' +
+      '</select>' +
+      '<span id="error" class="invalid-feedback"></span>';
+  }
+  $("#divPerfil").html(div);
+}
+
+
+
 function del(re, nombre) {
-    /*$.post("../clientes/actions/deleteClient.php", { ref: re }, function(data){
-      $("#divTableClientes").html(data);
-        $('#tableList').DataTable();
-    });*/
     $.ajax({
         type: 'POST', //aqui puede ser igual get
         url: '../clientes/actions/deleteClient.php', //aqui va tu direccion donde esta tu funcion php

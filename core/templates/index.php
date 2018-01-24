@@ -106,7 +106,7 @@
             <i class="fa fa-fw fa-calendar"></i>
             <span class="nav-link-text">Eventos</span>
           </a>
-        
+
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Administrador">
           <a class="nav-link" href="#">
@@ -194,7 +194,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Lex Software S.A. de C.V. 2018</small>
+          <small>Lex Software Copyright © 2018. Todos los derechos reservados</small>
         </div>
       </div>
     </footer>

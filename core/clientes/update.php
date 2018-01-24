@@ -311,7 +311,7 @@
     <div class="form-group row">
       <div class="form-group col-md-4">
         <p class="sMargen">Banco</p>
-        <select class="form-control" name="cliBanco" value="" placeholder="Banco">
+        <select class="form-control" name="cliBanco" value="" placeholder="Banco" onchange="CBanco(this.value)">
           <option selected="true" value="<?php echo $elemento3['banco']; ?>"><?php echo $elemento3['banco']; ?></option>
           <option value="Cofinavit">Cofinavit</option>
           <option value=">Santander persona moral">Santander persona moral</option>
@@ -333,7 +333,7 @@
         <input class="form-control" type="number" name="cliSolicitud" value="<?php echo $elemento3['solicitud']; ?>" placeholder="Ingresos">
         <span id="error" class="invalid-feedback"></span>
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-4" id="divPerfil">
         <p class="sMargen">Perfil</p>
         <select class="form-control" name="cliPerfil" value="<?php echo $elemento3['nombre']; ?>" placeholder="Perfil">
           <option selected="true" value="<?php echo $elemento3['nombre']; ?>"><?php echo $elemento3['nombre']; ?></option>

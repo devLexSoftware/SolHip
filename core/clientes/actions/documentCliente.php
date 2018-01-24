@@ -339,6 +339,56 @@ $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
               estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
           }
       break;
+
+      case 'Persona Moral':
+          //--Variables
+          if(isset($_POST['sol97ORI'])) {$sol97ORI = 1;} else {$sol97ORI = 0; $completo++;}
+          if(isset($_POST['sol97COP'])) {$sol97COP = 1;} else {$sol97COP = 0; $completo++;}
+
+          if(isset($_POST['docActNacimientoORI'])) {$docActNacimientoORI = 1;} else {$docActNacimientoORI = 0; $completo++;}
+          if(isset($_POST['docActNacimientoCOP'])) {$docActNacimientoCOP = 1;} else {$docActNacimientoCOP = 0; $completo++;}
+          if($_POST['docActNacimientoCAN'] != "") {$docActNacimientoCAN = $_POST['docActNacimientoCAN'];} else {$docActNacimientoCAN = 0;}
+
+          if(isset($_POST['docActMatrimonioORI'])) {$docActMatrimonioORI = 1;} else {$docActMatrimonioORI = 0; $completo++;}
+          if(isset($_POST['docActMatrimonioCOP'])) {$docActMatrimonioCOP = 1;} else {$docActMatrimonioCOP = 0; $completo++;}
+          if($_POST['docActMatrimonioCAN'] != "") {$docActMatrimonioCAN = $_POST['docActMatrimonioCAN'];} else {$docActMatrimonioCAN = 0;}
+
+          if(isset($_POST['docIdentificacionORI'])) {$docIdentificacionORI = 1;} else {$docIdentificacionORI = 0; $completo++;}
+          if(isset($_POST['docIdentificacionCOP'])) {$docIdentificacionCOP = 1;} else {$docIdentificacionCOP = 0; $completo++;}
+
+          if(isset($_POST['docComDomicilioORI'])) {$docComDomicilioORI = 1;} else {$docComDomicilioORI = 0; $completo++;}
+          if(isset($_POST['docComDomicilioCOP'])) {$docComDomicilioCOP = 1;} else {$docComDomicilioCOP = 0; $completo++;}
+
+          if(isset($_POST['docSitFiscalORI'])) {$docSitFiscalORI = 1;} else {$docSitFiscalORI = 0; $completo++;}
+          if(isset($_POST['docSitFiscalCOP'])) {$docSitFiscalCOP = 1;} else {$docSitFiscalCOP = 0; $completo++;}
+
+          if(isset($_POST['docEstCuentaORI'])) {$docEstCuentaORI = 1;} else {$docEstCuentaORI = 0; $completo++;}
+          if(isset($_POST['docEstCuentaCOP'])) {$docEstCuentaCOP = 1;} else {$docEstCuentaCOP = 0; $completo++;}
+          if($_POST['docEstCuentaCAN'] != "") {$docEstCuentaCAN = $_POST['docEstCuentaCAN'];} else {$docEstCuentaCAN = 0;}
+
+          if(isset($_POST['docActConstitutivaORI'])) {$docActConstitutivaORI = 1;} else {$docActConstitutivaORI = 0; $completo++;}
+          if(isset($_POST['docActConstitutivaCOP'])) {$docActConstitutivaCOP = 1;} else {$docActConstitutivaCOP = 0; $completo++;}
+
+          if ($completo == 0 ) {
+            $completo = "Completo";
+          }
+          else {
+            $completo = "Incompleto";
+          }
+          //--Para ingresa
+          if (isset($elemento['id'])){
+            $result = mysqli_query($con,"UPDATE DocumentosCliente SET sol97ORI = $sol97ORI, sol97COP = $sol97COP,
+              docActNacimientoORI = $docActNacimientoORI, docActNacimientoCOP = $docActNacimientoCOP, docActNacimientoCAN = $docActNacimientoCAN,
+              docActMatrimonioORI = $docActMatrimonioORI, docActMatrimonioCOP = $docActMatrimonioCOP, docActMatrimonioCAN = $docActMatrimonioCAN,
+              docIdentificacionORI = $docIdentificacionORI, docIdentificacionCOP = $docIdentificacionCOP, docComDomicilioORI = $docComDomicilioORI, docComDomicilioCOP = $docComDomicilioCOP,
+              docComDomicilioORI = $docComDomicilioORI, docComDomicilioCOP = $docComDomicilioCOP, docSitFiscalORI = $docSitFiscalORI, docSitFiscalCOP = $docSitFiscalCOP,
+              docEstCuentaORI = $docEstCuentaORI, docEstCuentaCOP = $docEstCuentaCOP, docEstCuentaCAN = $docEstCuentaCAN,
+              docActConstitutivaORI = $docActConstitutivaORI, docActConstitutivaCOP = $docActConstitutivaCOP,
+              estatus = '".$completo."', notas = '".$cli_Notas."' WHERE id = ".$elemento['id']."");
+          }
+      break;
+
+
       default:
         # code...
         break;
